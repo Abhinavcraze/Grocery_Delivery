@@ -700,9 +700,9 @@
                         <h4 class="font-bold text-gray-800 text-sm leading-tight mb-1 h-10 overflow-hidden">${p.name}</h4>
                         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">${p.cat}</p>
                         
-                        // <select onchange="updatePrice(this, ${p.id})" class="text-xs bg-gray-50 border-none rounded-xl p-2.5 mb-4 focus:ring-1 focus:ring-green-500 outline-none">
-                        //     ${p.variants.map(v => `<option value="${v.p}">${v.q} - ₹${v.p}</option>`).join('')}
-                        // </select>
+                         <select onchange="updatePrice(this, ${p.id})" class="text-xs bg-gray-50 border-none rounded-xl p-2.5 mb-4 focus:ring-1 focus:ring-green-500 outline-none">
+                             ${p.variants.map(v => `<option value="${v.p}">${v.q} - ₹${v.p}</option>`).join('')}
+                         </select>
 
                         <div class="mt-auto flex justify-between items-center">
                             <span id="price-tag-${p.id}" class="text-lg font-black text-gray-900">₹${p.variants[0].p}</span>
