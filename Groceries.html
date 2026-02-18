@@ -158,6 +158,126 @@
             class="text-yellow-400">MART PASS</span>
     </div>
 
+    <!-- Smart Reorder Hub -->
+    <section id="reorder-hub" class="max-w-7xl mx-auto px-4 mt-8 hidden">
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+                <div class="bg-purple-100 text-purple-600 p-2 rounded-lg">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-black italic tracking-tight">SMART <span class="text-purple-600">REORDER</span></h3>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mt-1">Based on your frequent purchases</p>
+                </div>
+            </div>
+            <!-- Trigger Button -->
+            <button id="view-history-btn" onclick="toggleReorderHistory()" class="text-xs font-black text-purple-600 border-b-2 border-purple-200 pb-1 hover:text-purple-800 transition-colors uppercase">
+                VIEW HISTORY
+            </button>
+        </div>
+
+        <!-- Scrollable Reorder Cards (Hidden by default with 'hidden' class) -->
+        <div id="smart-reorder-list" class="hidden flex gap-4 overflow-x-auto no-scrollbar pb-4 animate-in slide-in-from-top duration-500">
+            <!-- Reorder items injected here by JS -->
+        </div>
+    </section>
+
+    <!-- Flash Sale Section -->
+    <section id="flash-sale" class="max-w-7xl mx-auto px-4 mt-8 mb-12">
+        <div class="bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 rounded-[3rem] p-8 text-white relative overflow-hidden shadow-2xl shadow-red-100">
+            
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 relative z-10 gap-4">
+                <div class="text-center md:text-left">
+                    <h2 class="text-4xl font-black italic tracking-tighter flex items-center justify-center md:justify-start gap-3">
+                        <i class="fa-solid fa-bolt-lightning text-yellow-300 animate-pulse"></i>
+                        FLASH <span class="text-yellow-300 uppercase">SALE</span>
+                    </h2>
+                    <p class="text-red-100 font-bold text-sm">Quantities are limited. Prices increase when timer hits zero!</p>
+                </div>
+                <div class="bg-black/30 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 flex items-center gap-4">
+                    <span class="text-[10px] font-black uppercase tracking-widest opacity-70">Ends In</span>
+                    <span id="flash-timer" class="font-mono text-2xl font-black text-yellow-400 tracking-tighter">00:15:00</span>
+                </div>
+            </div>
+
+            <!-- Flash Sale Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                
+                <!-- Flash Product 1 -->
+                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                    <div class="relative mb-4">
+                        <img src="https://loremflickr.com/400/400/grocery,mango" class="w-full h-32 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">40% OFF</span>
+                    </div>
+                    <h4 class="font-black text-sm mb-1">Alphonso Mango (Sale)</h4>
+                    <div class="flex items-end gap-2 mb-4">
+                        <span class="text-2xl font-black text-red-600">₹270</span>
+                        <span class="text-xs text-gray-400 line-through mb-1">₹450</span>
+                    </div>
+                    <!-- Stock Logic -->
+                    <div class="mt-auto">
+                        <div class="flex justify-between text-[10px] font-black uppercase mb-1">
+                            <span class="text-red-600">Only <span id="f-qty-1">3</span> Left</span>
+                            <span class="text-gray-400">Sold 70%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                            <div id="f-prog-1" class="h-full bg-red-600 transition-all duration-1000" style="width: 30%;"></div>
+                        </div>
+                        <button onclick="addFlashToCart(1, 'Alphonso Mango (Flash)', 270, 'https://loremflickr.com/400/400/grocery,mango')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                    </div>
+                </div>
+
+                <!-- Flash Product 2 -->
+                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                    <div class="relative mb-4">
+                        <img src="https://loremflickr.com/400/400/grocery,milk" class="w-full h-32 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">50% OFF</span>
+                    </div>
+                    <h4 class="font-black text-sm mb-1">Pure Cow Milk (2L)</h4>
+                    <div class="flex items-end gap-2 mb-4">
+                        <span class="text-2xl font-black text-red-600">₹64</span>
+                        <span class="text-xs text-gray-400 line-through mb-1">₹128</span>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex justify-between text-[10px] font-black uppercase mb-1">
+                            <span class="text-red-600">Only <span id="f-qty-2">7</span> Left</span>
+                            <span class="text-gray-400">Sold 45%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                            <div id="f-prog-2" class="h-full bg-orange-500 transition-all duration-1000" style="width: 55%;"></div>
+                        </div>
+                        <button onclick="addFlashToCart(2, 'Pure Cow Milk (Flash)', 64, 'https://loremflickr.com/400/400/grocery,milk')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                    </div>
+                </div>
+
+                <!-- Flash Product 3 -->
+                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                    <div class="relative mb-4">
+                        <img src="https://loremflickr.com/400/400/grocery,paneer" class="w-full h-32 object-cover rounded-2xl">
+                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">30% OFF</span>
+                    </div>
+                    <h4 class="font-black text-sm mb-1">Fresh Malai Paneer</h4>
+                    <div class="flex items-end gap-2 mb-4">
+                        <span class="text-2xl font-black text-red-600">₹161</span>
+                        <span class="text-xs text-gray-400 line-through mb-1">₹230</span>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex justify-between text-[10px] font-black uppercase mb-1">
+                            <span class="text-red-600">Only <span id="f-qty-3">12</span> Left</span>
+                            <span class="text-gray-400">Sold 20%</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                            <div id="f-prog-3" class="h-full bg-green-500 transition-all duration-1000" style="width: 80%;"></div>
+                        </div>
+                        <button onclick="addFlashToCart(3, 'Fresh Paneer (Flash)', 161, 'https://loremflickr.com/400/400/grocery,paneer')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- Category Scroller -->
     <div class="bg-white border-b border-gray-100 sticky top-[73px] z-40">
         <div class="max-w-7xl mx-auto px-4 py-4 flex gap-3 overflow-x-auto no-scrollbar">
@@ -330,6 +450,9 @@
             </div>
 
             <br>
+
+            
+
             <!-- Delivery Slot Allocation -->
             <div class="mb-8">
                 <h4 class="font-black text-sm uppercase tracking-widest text-gray-400 mb-4">Choose Delivery Slot</h4>
@@ -623,21 +746,21 @@
             document.getElementById(`price-tag-${id}`).innerText = `₹${sel.value}`;
         }
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            cart.push({...product, image: `https://loremflickr.com/400/400/grocery,${product.img}`});
-            updateCart();
-        }
+        // function addToCart(id) {
+        //     const product = products.find(p => p.id === id);
+        //     cart.push({...product, image: `https://loremflickr.com/400/400/grocery,${product.img}`});
+        //     updateCart();
+        // }
 
 
 
-        function updateCart() {
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            document.getElementById('cart-count').innerText = cart.length;
-            document.getElementById('footer-item-count').innerText = `${cart.length} ITEMS`;
-            document.getElementById('footer-total').innerText = `₹${total}`;
-            if (cart.length > 0) document.getElementById('cart-footer').classList.remove('hidden');
-        }
+        // function updateCart() {
+        //     const total = cart.reduce((s, i) => s + i.price, 0);
+        //     document.getElementById('cart-count').innerText = cart.length;
+        //     document.getElementById('footer-item-count').innerText = `${cart.length} ITEMS`;
+        //     document.getElementById('footer-total').innerText = `₹${total}`;
+        //     if (cart.length > 0) document.getElementById('cart-footer').classList.remove('hidden');
+        // }
 
         // 1. Updated addToCart to capture the selected price from the dropdown
         function addToCart(id) {
@@ -721,19 +844,138 @@
                 const totalAmount = document.getElementById('footer-total').innerText;
                 const selectedSlot = document.querySelector('input[name="delivery-slot"]:checked').value;
 
-                // Save all details for Tracking.html
+                if(cart.length === 0) return alert("Add items to cart first!");
+
+                // Save history before moving to tracking
+                saveToPurchaseHistory();
+
                 localStorage.setItem('orderTotal', totalAmount);
                 localStorage.setItem('deliverySlot', selectedSlot);
 
-                alert(`Order Confirmed for ${selectedSlot}!\nMoving to Live Tracking...`);
+                alert(`Order Confirmed for ${selectedSlot}!\nYour frequent list has been updated.`);
                 window.location.href = 'Tracking.html';
             }
 
-        function processCheckout() {
-            const totalAmount = document.getElementById('footer-total').innerText;
-            localStorage.setItem('orderTotal', totalAmount);
-            window.location.href = 'Tracking.html';
+            // 4. Initialize in the existing render/init part
+            document.addEventListener('DOMContentLoaded', () => {
+                render();
+                renderSmartReorder(); // Call the reorder hub on load
+            });
+
+        function renderSmartReorder() {
+            const history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+            const hub = document.getElementById('reorder-hub');
+            const list = document.getElementById('smart-reorder-list');
+
+            if (history.length === 0) {
+                hub.classList.add('hidden');
+                return;
+            }
+
+            hub.classList.remove('hidden');
+            list.innerHTML = '';
+
+            history.forEach(item => {
+                list.innerHTML += `
+                    <div class="flex-shrink-0 w-44 bg-white p-4 rounded-[2rem] border border-purple-50 shadow-sm hover:shadow-md transition-all group">
+                        <div class="relative mb-3">
+                            <img src="${item.img}" class="w-full h-24 object-cover rounded-2xl group-hover:scale-105 transition-transform">
+                            <div class="absolute -bottom-2 -right-1 bg-purple-600 text-white text-[8px] font-black px-2 py-1 rounded-lg shadow-lg">
+                                BOUGHT ${item.count}x
+                            </div>
+                        </div>
+                        <h5 class="font-bold text-xs text-gray-800 leading-tight h-8 overflow-hidden">${item.name}</h5>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="font-black text-sm">₹${item.price}</span>
+                            <button onclick="addToCart(${item.productId})" class="bg-purple-100 text-purple-600 p-2 rounded-xl hover:bg-purple-600 hover:text-white transition-all">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
         }
+
+        // --- TOGGLE REORDER HISTORY ---
+        function toggleReorderHistory() {
+            const list = document.getElementById('smart-reorder-list');
+            const btn = document.getElementById('view-history-btn');
+
+            // Toggle the 'hidden' class
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                list.classList.add('flex'); // Ensure flex is applied when shown
+                btn.innerText = "HIDE HISTORY";
+                btn.classList.replace('text-purple-600', 'text-gray-400'); // Change style when open
+            } else {
+                list.classList.add('hidden');
+                list.classList.remove('flex');
+                btn.innerText = "VIEW HISTORY";
+                btn.classList.replace('text-gray-400', 'text-purple-600');
+            }
+        }
+
+        // Update your renderSmartReorder function to ensure it doesn't force the list open
+        function renderSmartReorder() {
+            const history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+            const hub = document.getElementById('reorder-hub');
+            const list = document.getElementById('smart-reorder-list');
+
+            if (history.length === 0) {
+                hub.classList.add('hidden');
+                return;
+            }
+
+            // Show the Hub (Title + Button) but keep the list hidden
+            hub.classList.remove('hidden');
+            
+            list.innerHTML = history.map(item => `
+                <div class="flex-shrink-0 w-44 bg-white p-4 rounded-[2rem] border border-purple-50 shadow-sm hover:shadow-md transition-all group">
+                    <div class="relative mb-3">
+                        <img src="${item.img}" class="w-full h-24 object-cover rounded-2xl group-hover:scale-105 transition-transform">
+                        <div class="absolute -bottom-2 -right-1 bg-purple-600 text-white text-[8px] font-black px-2 py-1 rounded-lg shadow-lg">
+                            BOUGHT ${item.count}x
+                        </div>
+                    </div>
+                    <h5 class="font-bold text-xs text-gray-800 leading-tight h-8 overflow-hidden">${item.name}</h5>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="font-black text-sm">₹${item.price}</span>
+                        <button onclick="addToCart(${item.productId}, '${item.name.replace(/'/g, "\\'")}')" class="bg-purple-100 text-purple-600 p-2 rounded-xl hover:bg-purple-600 hover:text-white transition-all">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveToPurchaseHistory() {
+            let history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+            
+            cart.forEach(cartItem => {
+                // Find if item already exists in history
+                const existingIndex = history.findIndex(h => h.productId === cartItem.productId);
+                
+                if (existingIndex > -1) {
+                    history[existingIndex].count += 1;
+                    history[existingIndex].lastBought = new Date().toLocaleDateString();
+                } else {
+                    history.push({
+                        productId: cartItem.productId,
+                        name: cartItem.name,
+                        img: cartItem.img,
+                        price: cartItem.price,
+                        count: 1,
+                        lastBought: new Date().toLocaleDateString()
+                    });
+                }
+            });
+
+            // Keep only top 10 frequent items
+            history.sort((a, b) => b.count - a.count);
+            localStorage.setItem('purchaseHistory', JSON.stringify(history.slice(0, 10)));
+        }
+
+
 
         function toggleModal(id) {
             const modal = document.getElementById(id);
@@ -747,6 +989,85 @@
                 profileBtn.classList.remove('hidden'); // Show profile button
             }
         }
+
+        // --- ENHANCED FLASH SALE ENGINE ---
+
+        function initFlashSale() {
+            let timeLeft = 15 * 60; // 15 Minutes
+            
+            const timerDisplay = document.getElementById('flash-timer');
+            
+            const flashTimer = setInterval(() => {
+                timeLeft--;
+                
+                // Timer Display Logic
+                const hrs = Math.floor(timeLeft / 3600);
+                const mins = Math.floor((timeLeft % 3600) / 60);
+                const secs = timeLeft % 60;
+                timerDisplay.innerText = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                // Randomly Decrease Stock for all 3 products to simulate real buyers
+                if (timeLeft % 8 === 0) updateStock('f-qty-1', 'f-prog-1', 10);
+                if (timeLeft % 12 === 0) updateStock('f-qty-2', 'f-prog-2', 15);
+                if (timeLeft % 5 === 0) updateStock('f-qty-3', 'f-prog-3', 20);
+
+                if (timeLeft <= 0) {
+                    clearInterval(flashTimer);
+                    document.getElementById('flash-sale').classList.add('grayscale', 'opacity-50', 'pointer-events-none');
+                    timerDisplay.innerText = "EXPIRED";
+                }
+            }, 1000);
+        }
+
+        function updateStock(qtyId, progId, max) {
+            const qtyEl = document.getElementById(qtyId);
+            const progEl = document.getElementById(progId);
+            let current = parseInt(qtyEl.innerText);
+            
+            if (current > 0) {
+                current--;
+                qtyEl.innerText = current;
+                let perc = (current / max) * 100;
+                progEl.style.width = perc + "%";
+                
+                // Change color based on scarcity
+                if (current < 5) progEl.classList.replace('bg-green-500', 'bg-red-600');
+            } else {
+                qtyEl.innerText = "0";
+            }
+        }
+
+        // Special function to add items with the flash sale price
+        function addFlashToCart(id, name, salePrice, imgUrl) {
+            // Check if item already claimed (optional logic)
+            cart.push({
+                id: Date.now() + Math.random(), // Unique instance
+                productId: 'FLASH-' + id,
+                name: name,
+                price: salePrice,
+                img: imgUrl,
+                qty: '1 Unit (Limit)'
+            });
+            
+            // Trigger the standard update functions already in your Groceries.html
+            updateCart();
+            
+            // Fancy notification
+            const btn = event.target;
+            btn.innerText = "CLAIMED!";
+            btn.classList.replace('bg-gray-900', 'bg-green-600');
+            setTimeout(() => {
+                btn.innerText = "CLAIM DEAL";
+                btn.classList.replace('bg-green-600', 'bg-gray-900');
+            }, 2000);
+        }
+
+        // Call initFlashSale inside your DOMContentLoaded listener
+        document.addEventListener('DOMContentLoaded', () => {
+            render();
+            renderSmartReorder();
+            initFlashSale(); // START THE ENGINE
+        });
 
         // Initialize
         render();
