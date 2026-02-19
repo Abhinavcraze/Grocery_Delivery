@@ -8,90 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .zepto-gradient {
-            background: linear-gradient(90deg, #3b0066 0%, #631d99 100%);
-        }
-
-        .category-pill.active {
-            background-color: #16a34a;
-            color: white;
-            border-color: #16a34a;
-        }
-
-        .product-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-
-        .glass-header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-        }
-
-        .login-gradient {
-            background: linear-gradient(135deg, #16a34a 0%, #a3e635 100%);
-        }
-
-        .pass-card {
-            background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
-        }
-
-        .profile-drawer {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .profile-drawer.open {
-            transform: translateX(0);
-        }
-
-        .urgency-badge {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.6;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 200% 0;
-            }
-
-            100% {
-                background-position: -200% 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="Groceries.css">>
 </head>
 
 <body class="bg-gray-50 text-gray-900">
@@ -125,25 +42,30 @@
             <!-- User Actions -->
             <div class="flex items-center gap-3">
                 <!-- 1. Compact Profile Button -->
-                <button id="profile-btn" onclick="toggleProfile()" class="flex-shrink-0 active:scale-90 transition-transform">
-                    <div class="w-10 h-10 bg-[#5C1B95] text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-purple-100 shadow-sm">
+                <button id="profile-btn" onclick="toggleProfile()"
+                    class="flex-shrink-0 active:scale-90 transition-transform">
+                    <div
+                        class="w-10 h-10 bg-[#5C1B95] text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-purple-100 shadow-sm">
                         AB
                     </div>
                 </button>
 
                 <!-- 2. Small Integrated Wallet Pill -->
-                <div class="flex items-center bg-gradient-to-r from-green-600 to-green-700 px-3 py-1.5 rounded-xl text-white shadow-sm border border-green-500/30">
+                <div
+                    class="flex items-center bg-gradient-to-r from-green-600 to-green-700 px-3 py-1.5 rounded-xl text-white shadow-sm border border-green-500/30">
                     <div class="flex flex-col mr-3 border-r border-white/20 pr-3 leading-tight">
                         <span class="text-[8px] font-black uppercase opacity-80 tracking-tighter">Wallet</span>
                         <span id="wallet-balance-display" class="text-sm font-black italic">₹0.00</span>
                     </div>
-                    <button onclick="addMoneyToWallet()" class="w-6 h-6 bg-white text-green-700 rounded-lg flex items-center justify-center hover:bg-green-50 transition-colors shadow-sm active:scale-95">
+                    <button onclick="addMoneyToWallet()"
+                        class="w-6 h-6 bg-white text-green-700 rounded-lg flex items-center justify-center hover:bg-green-50 transition-colors shadow-sm active:scale-95">
                         <i class="fa-solid fa-plus text-[10px]"></i>
                     </button>
                 </div>
 
                 <!-- 3. Small Compact Cart Button -->
-                <button onclick="toggleModal('cart-modal')" class="bg-green-600 text-white px-4 py-2.5 rounded-xl font-black text-sm shadow-md flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95">
+                <button onclick="toggleModal('cart-modal')"
+                    class="bg-green-600 text-white px-4 py-2.5 rounded-xl font-black text-sm shadow-md flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95">
                     <i class="fa-solid fa-cart-shopping text-xs"></i>
                     <span id="cart-count" class="bg-white/20 px-1.5 rounded-md min-w-[18px]">0</span>
                 </button>
@@ -165,18 +87,22 @@
                     <i class="fa-solid fa-rotate-right"></i>
                 </div>
                 <div>
-                    <h3 class="text-xl font-black italic tracking-tight">SMART <span class="text-purple-600">REORDER</span></h3>
-                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mt-1">Based on your frequent purchases</p>
+                    <h3 class="text-xl font-black italic tracking-tight">SMART <span
+                            class="text-purple-600">REORDER</span></h3>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mt-1">Based on
+                        your frequent purchases</p>
                 </div>
             </div>
             <!-- Trigger Button -->
-            <button id="view-history-btn" onclick="toggleReorderHistory()" class="text-xs font-black text-purple-600 border-b-2 border-purple-200 pb-1 hover:text-purple-800 transition-colors uppercase">
+            <button id="view-history-btn" onclick="toggleReorderHistory()"
+                class="text-xs font-black text-purple-600 border-b-2 border-purple-200 pb-1 hover:text-purple-800 transition-colors uppercase">
                 VIEW HISTORY
             </button>
         </div>
 
         <!-- Scrollable Reorder Cards (Hidden by default with 'hidden' class) -->
-        <div id="smart-reorder-list" class="hidden flex gap-4 overflow-x-auto no-scrollbar pb-4 animate-in slide-in-from-top duration-500">
+        <div id="smart-reorder-list"
+            class="hidden flex gap-4 overflow-x-auto no-scrollbar pb-4 animate-in slide-in-from-top duration-500">
             <!-- Reorder items injected here by JS -->
         </div>
     </section>
@@ -236,14 +162,18 @@
 
     <!-- Kitchen Toggle Banner -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
-        <button onclick="toggleKitchen()" class="w-full bg-gradient-to-r from-green-700 to-green-900 rounded-[2.5rem] p-6 text-white flex items-center justify-between shadow-xl hover:scale-[1.01] transition-all group">
+        <button onclick="toggleKitchen()"
+            class="w-full bg-gradient-to-r from-green-700 to-green-900 rounded-[2.5rem] p-6 text-white flex items-center justify-between shadow-xl hover:scale-[1.01] transition-all group">
             <div class="flex items-center gap-6">
-                <div class="w-16 h-16 bg-white/10 rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform">
+                <div
+                    class="w-16 h-16 bg-white/10 rounded-3xl flex items-center justify-center text-3xl group-hover:rotate-12 transition-transform">
                     <i class="fa-solid fa-hat-chef"></i>
                 </div>
                 <div class="text-left">
-                    <h3 class="text-2xl font-black italic tracking-tighter">PAZHAMUTHIR <span class="text-green-400">KITCHEN</span></h3>
-                    <p class="text-xs font-bold opacity-70 uppercase tracking-widest">Get recipes & ingredients in 1-click</p>
+                    <h3 class="text-2xl font-black italic tracking-tighter">PAZHAMUTHIR <span
+                            class="text-green-400">KITCHEN</span></h3>
+                    <p class="text-xs font-bold opacity-70 uppercase tracking-widest">Get recipes & ingredients in
+                        1-click</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-2xl font-black text-sm uppercase">
@@ -255,32 +185,46 @@
     <!-- Pazhamuthir Kitchen Hub (Show/Hide) -->
     <section id="kitchen-hub" class="hidden max-w-7xl mx-auto px-4 mt-6 animate-in slide-in-from-top duration-700">
         <div class="bg-gray-900 rounded-[3.5rem] overflow-hidden shadow-2xl border border-white/5 relative">
-            
+
             <!-- Header / Tabs -->
             <div class="flex items-center justify-between border-b border-white/10 bg-black/40 px-4">
                 <div class="flex overflow-x-auto no-scrollbar">
-                    <button onclick="changeRecipe(0)" class="recipe-tab active py-6 px-8 text-white font-black text-xs uppercase tracking-widest border-b-4 border-green-500 whitespace-nowrap">Fruit Custard</button>
-                    <button onclick="changeRecipe(1)" class="recipe-tab py-6 px-8 text-gray-500 font-black text-xs uppercase tracking-widest border-b-4 border-transparent hover:text-white whitespace-nowrap">Detox Salad</button>
-                    <button onclick="changeRecipe(2)" class="recipe-tab py-6 px-8 text-gray-500 font-black text-xs uppercase tracking-widest border-b-4 border-transparent hover:text-white whitespace-nowrap">Avocado Toast</button>
+                    <button onclick="changeRecipe(0)"
+                        class="recipe-tab active py-6 px-8 text-white font-black text-xs uppercase tracking-widest border-b-4 border-green-500 whitespace-nowrap">Fruit
+                        Custard</button>
+                    <button onclick="changeRecipe(1)"
+                        class="recipe-tab py-6 px-8 text-gray-500 font-black text-xs uppercase tracking-widest border-b-4 border-transparent hover:text-white whitespace-nowrap">Detox
+                        Salad</button>
+                    <button onclick="changeRecipe(2)"
+                        class="recipe-tab py-6 px-8 text-gray-500 font-black text-xs uppercase tracking-widest border-b-4 border-transparent hover:text-white whitespace-nowrap">Avocado
+                        Toast</button>
                 </div>
-                <button onclick="toggleKitchen()" class="text-white/30 hover:text-white px-6"><i class="fa-solid fa-circle-xmark text-2xl"></i></button>
+                <button onclick="toggleKitchen()" class="text-white/30 hover:text-white px-6"><i
+                        class="fa-solid fa-circle-xmark text-2xl"></i></button>
             </div>
 
             <div class="flex flex-col lg:flex-row h-auto lg:h-[550px]">
                 <!-- Video Player -->
                 <div class="lg:w-7/12 relative bg-black h-[300px] lg:h-full">
-                    <video id="recipe-video-api" class="w-full h-full object-cover opacity-70" autoplay muted loop playsinline src="https://assets.mixkit.co/videos/preview/mixkit-fresh-seasonal-fruit-salad-42407-large.mp4">
+                    <video id="recipe-video-api" class="w-full h-full object-cover opacity-70" autoplay muted loop
+                        playsinline
+                        src="https://assets.mixkit.co/videos/preview/mixkit-fresh-seasonal-fruit-salad-42407-large.mp4">
                     </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none">
+                    </div>
                     <div class="absolute bottom-10 left-10 text-white">
                         <h2 id="recipe-title" class="text-4xl font-black mb-1">Fruit Custard</h2>
-                        <p id="recipe-desc" class="text-green-400 font-bold uppercase text-[10px] tracking-widest italic">10 Mins • Gourmet Dessert</p>
+                        <p id="recipe-desc"
+                            class="text-green-400 font-bold uppercase text-[10px] tracking-widest italic">10 Mins •
+                            Gourmet Dessert</p>
                     </div>
                 </div>
 
                 <!-- Dynamic Ingredients -->
                 <div class="lg:w-5/12 bg-white p-10 flex flex-col">
-                    <h4 class="font-black text-gray-400 text-[10px] uppercase tracking-widest mb-6">Ingredients for this recipe</h4>
+                    <h4 class="font-black text-gray-400 text-[10px] uppercase tracking-widest mb-6">Ingredients for this
+                        recipe</h4>
                     <div id="recipe-ingredients-list" class="flex-1 space-y-3 overflow-y-auto no-scrollbar mb-8">
                         <!-- JS will inject ingredients here -->
                     </div>
@@ -288,9 +232,11 @@
                     <div class="mt-auto pt-6 border-t">
                         <div class="flex justify-between items-center mb-6">
                             <span class="text-gray-400 font-bold text-xs">BUNDLE PRICE</span>
-                            <span id="recipe-total-price" class="text-2xl font-black text-gray-900 tracking-tighter">₹0</span>
+                            <span id="recipe-total-price"
+                                class="text-2xl font-black text-gray-900 tracking-tighter">₹0</span>
                         </div>
-                        <button onclick="addRecipeKit()" id="add-recipe-btn" class="w-full bg-green-600 text-white py-5 rounded-[2rem] font-black text-lg shadow-xl shadow-green-100 hover:bg-green-700 transition-all flex items-center justify-center gap-3">
+                        <button onclick="addRecipeKit()" id="add-recipe-btn"
+                            class="w-full bg-green-600 text-white py-5 rounded-[2rem] font-black text-lg shadow-xl shadow-green-100 hover:bg-green-700 transition-all flex items-center justify-center gap-3">
                             ADD ALL INGREDIENTS <i class="fa-solid fa-cart-plus"></i>
                         </button>
                     </div>
@@ -301,31 +247,40 @@
 
     <!-- Flash Sale Section -->
     <section id="flash-sale" class="max-w-7xl mx-auto px-4 mt-8 mb-12">
-        <div class="bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 rounded-[3rem] p-8 text-white relative overflow-hidden shadow-2xl shadow-red-100">
-            
+        <div
+            class="bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 rounded-[3rem] p-8 text-white relative overflow-hidden shadow-2xl shadow-red-100">
+
             <!-- Header -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 relative z-10 gap-4">
                 <div class="text-center md:text-left">
-                    <h2 class="text-4xl font-black italic tracking-tighter flex items-center justify-center md:justify-start gap-3">
+                    <h2
+                        class="text-4xl font-black italic tracking-tighter flex items-center justify-center md:justify-start gap-3">
                         <i class="fa-solid fa-bolt-lightning text-yellow-300 animate-pulse"></i>
                         FLASH <span class="text-yellow-300 uppercase">SALE</span>
                     </h2>
-                    <p class="text-red-100 font-bold text-sm">Quantities are limited. Prices increase when timer hits zero!</p>
+                    <p class="text-red-100 font-bold text-sm">Quantities are limited. Prices increase when timer hits
+                        zero!</p>
                 </div>
-                <div class="bg-black/30 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 flex items-center gap-4">
+                <div
+                    class="bg-black/30 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 flex items-center gap-4">
                     <span class="text-[10px] font-black uppercase tracking-widest opacity-70">Ends In</span>
-                    <span id="flash-timer" class="font-mono text-2xl font-black text-yellow-400 tracking-tighter">00:15:00</span>
+                    <span id="flash-timer"
+                        class="font-mono text-2xl font-black text-yellow-400 tracking-tighter">00:15:00</span>
                 </div>
             </div>
 
             <!-- Flash Sale Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-                
+
                 <!-- Flash Product 1 -->
-                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                <div
+                    class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
                     <div class="relative mb-4">
-                        <img src="https://loremflickr.com/400/400/grocery,mango" class="w-full h-32 object-cover rounded-2xl">
-                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">40% OFF</span>
+                        <img src="https://loremflickr.com/400/400/grocery,mango"
+                            class="w-full h-32 object-cover rounded-2xl">
+                        <span
+                            class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">40%
+                            OFF</span>
                     </div>
                     <h4 class="font-black text-sm mb-1">Alphonso Mango (Sale)</h4>
                     <div class="flex items-end gap-2 mb-4">
@@ -339,17 +294,25 @@
                             <span class="text-gray-400">Sold 70%</span>
                         </div>
                         <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
-                            <div id="f-prog-1" class="h-full bg-red-600 transition-all duration-1000" style="width: 30%;"></div>
+                            <div id="f-prog-1" class="h-full bg-red-600 transition-all duration-1000"
+                                style="width: 30%;"></div>
                         </div>
-                        <button onclick="addFlashToCart(1, 'Alphonso Mango (Flash)', 270, 'https://loremflickr.com/400/400/grocery,mango')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                        <button
+                            onclick="addFlashToCart(1, 'Alphonso Mango (Flash)', 270, 'https://loremflickr.com/400/400/grocery,mango')"
+                            class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM
+                            DEAL</button>
                     </div>
                 </div>
 
                 <!-- Flash Product 2 -->
-                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                <div
+                    class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
                     <div class="relative mb-4">
-                        <img src="https://loremflickr.com/400/400/grocery,milk" class="w-full h-32 object-cover rounded-2xl">
-                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">50% OFF</span>
+                        <img src="https://loremflickr.com/400/400/grocery,milk"
+                            class="w-full h-32 object-cover rounded-2xl">
+                        <span
+                            class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">50%
+                            OFF</span>
                     </div>
                     <h4 class="font-black text-sm mb-1">Pure Cow Milk (2L)</h4>
                     <div class="flex items-end gap-2 mb-4">
@@ -362,17 +325,25 @@
                             <span class="text-gray-400">Sold 45%</span>
                         </div>
                         <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
-                            <div id="f-prog-2" class="h-full bg-orange-500 transition-all duration-1000" style="width: 55%;"></div>
+                            <div id="f-prog-2" class="h-full bg-orange-500 transition-all duration-1000"
+                                style="width: 55%;"></div>
                         </div>
-                        <button onclick="addFlashToCart(2, 'Pure Cow Milk (Flash)', 64, 'https://loremflickr.com/400/400/grocery,milk')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                        <button
+                            onclick="addFlashToCart(2, 'Pure Cow Milk (Flash)', 64, 'https://loremflickr.com/400/400/grocery,milk')"
+                            class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM
+                            DEAL</button>
                     </div>
                 </div>
 
                 <!-- Flash Product 3 -->
-                <div class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
+                <div
+                    class="bg-white text-gray-500 p-5 rounded-[2.5rem] shadow-xl hover:scale-[1.02] transition-transform flex flex-col">
                     <div class="relative mb-4">
-                        <img src="https://loremflickr.com/400/400/grocery,paneer" class="w-full h-32 object-cover rounded-2xl">
-                        <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">30% OFF</span>
+                        <img src="https://loremflickr.com/400/400/grocery,paneer"
+                            class="w-full h-32 object-cover rounded-2xl">
+                        <span
+                            class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded-lg">30%
+                            OFF</span>
                     </div>
                     <h4 class="font-black text-sm mb-1">Fresh Malai Paneer</h4>
                     <div class="flex items-end gap-2 mb-4">
@@ -385,9 +356,13 @@
                             <span class="text-gray-400">Sold 20%</span>
                         </div>
                         <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
-                            <div id="f-prog-3" class="h-full bg-green-500 transition-all duration-1000" style="width: 80%;"></div>
+                            <div id="f-prog-3" class="h-full bg-green-500 transition-all duration-1000"
+                                style="width: 80%;"></div>
                         </div>
-                        <button onclick="addFlashToCart(3, 'Fresh Paneer (Flash)', 161, 'https://loremflickr.com/400/400/grocery,paneer')" class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM DEAL</button>
+                        <button
+                            onclick="addFlashToCart(3, 'Fresh Paneer (Flash)', 161, 'https://loremflickr.com/400/400/grocery,paneer')"
+                            class="w-full bg-gray-900 text-white py-3 rounded-xl font-black text-xs hover:bg-black transition-all">CLAIM
+                            DEAL</button>
                     </div>
                 </div>
 
@@ -512,51 +487,59 @@
 
 
     <!--cart and delivery-->
-    <div id="cart-footer" class="hidden fixed bottom-0 w-full bg-white border-t border-gray-100 p-4 z-50 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+    <div id="cart-footer"
+        class="hidden fixed bottom-0 w-full bg-white border-t border-gray-100 p-4 z-50 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4">
                 <div class="bg-green-100 text-green-600 p-3 rounded-xl">
                     <i class="fa-solid fa-bag-shopping"></i>
                 </div>
                 <div>
-                    <p id="footer-item-count" class="text-xs font-black text-gray-400 uppercase tracking-widest">0 ITEMS</p>
+                    <p id="footer-item-count" class="text-xs font-black text-gray-400 uppercase tracking-widest">0 ITEMS
+                    </p>
                     <p id="footer-total" class="text-lg font-black text-gray-900">₹0</p>
                 </div>
             </div>
-            <button onclick="toggleModal('cart-modal')" class="bg-green-600 text-white px-10 py-4 rounded-2xl font-black text-sm shadow-xl shadow-green-100 hover:bg-green-700 transition-all flex items-center gap-3">
+            <button onclick="toggleModal('cart-modal')"
+                class="bg-green-600 text-white px-10 py-4 rounded-2xl font-black text-sm shadow-xl shadow-green-100 hover:bg-green-700 transition-all flex items-center gap-3">
                 VIEW CART <i class="fa-solid fa-chevron-right text-[10px]"></i>
             </button>
         </div>
     </div>
 
-    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-lg rounded-t-[2.5rem] md:rounded-[2.5rem] p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div id="cart-modal"
+        class="hidden fixed inset-0 bg-black/70 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 backdrop-blur-sm">
+        <div
+            class="bg-white w-full max-w-lg rounded-t-[2.5rem] md:rounded-[2.5rem] p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-black">Your Basket</h3>
                 <button onclick="toggleModal('cart-modal')" class="text-3xl text-gray-300">&times;</button>
             </div>
 
             <div id="cart-items-list" class="space-y-4 mb-8">
-                </div>
+            </div>
 
             <div class="border-t pt-6">
                 <h4 class="font-black text-sm uppercase tracking-widest text-gray-400 mb-4">Select Payment Method</h4>
                 <div class="grid grid-cols-1 gap-3">
-                    <label class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all border-green-500 bg-green-50">
+                    <label
+                        class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all border-green-500 bg-green-50">
                         <input type="radio" name="payment" value="UPI" checked class="accent-green-600">
                         <div class="flex-1">
                             <p class="font-bold text-sm">UPI (GPay, PhonePe, Paytm)</p>
                         </div>
                         <i class="fa-solid fa-mobile-screen-button text-gray-400"></i>
                     </label>
-                    <label class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
+                    <label
+                        class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
                         <input type="radio" name="payment" value="Card" class="accent-green-600">
                         <div class="flex-1">
                             <p class="font-bold text-sm">Debit / Credit Card</p>
                         </div>
                         <i class="fa-solid fa-credit-card text-gray-400"></i>
                     </label>
-                    <label class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
+                    <label
+                        class="flex items-center gap-4 p-4 border rounded-2xl cursor-pointer hover:bg-gray-50 transition-all">
                         <input type="radio" name="payment" value="COD" class="accent-green-600">
                         <div class="flex-1">
                             <p class="font-bold text-sm">Cash on Delivery</p>
@@ -568,29 +551,33 @@
 
             <br>
 
-            
+
 
             <!-- Delivery Slot Allocation -->
             <div class="mb-8">
                 <h4 class="font-black text-sm uppercase tracking-widest text-gray-400 mb-4">Choose Delivery Slot</h4>
                 <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
                     <label class="cursor-pointer flex-shrink-0">
-                        <input type="radio" name="delivery-slot" value="Instant (10-15 Mins)" checked class="hidden peer">
-                        <div class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
+                        <input type="radio" name="delivery-slot" value="Instant (10-15 Mins)" checked
+                            class="hidden peer">
+                        <div
+                            class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
                             <p class="font-black text-xs">INSTANT</p>
                             <p class="text-[10px] text-gray-500">10-15 Mins</p>
                         </div>
                     </label>
                     <label class="cursor-pointer flex-shrink-0">
                         <input type="radio" name="delivery-slot" value="Evening (6 PM - 8 PM)" class="hidden peer">
-                        <div class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
+                        <div
+                            class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
                             <p class="font-black text-xs">EVENING</p>
                             <p class="text-[10px] text-gray-500">6 PM - 8 PM</p>
                         </div>
                     </label>
                     <label class="cursor-pointer flex-shrink-0">
                         <input type="radio" name="delivery-slot" value="Tomorrow Morning" class="hidden peer">
-                        <div class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
+                        <div
+                            class="px-6 py-4 rounded-2xl border-2 border-gray-100 peer-checked:border-green-600 peer-checked:bg-green-50 transition-all text-center">
                             <p class="font-black text-xs">TOMORROW</p>
                             <p class="text-[10px] text-gray-500">7 AM - 9 AM</p>
                         </div>
@@ -598,7 +585,8 @@
                 </div>
             </div>
 
-            <button onclick="processCheckout()" class="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-lg mt-8 hover:bg-black transition-all">
+            <button onclick="processCheckout()"
+                class="w-full bg-gray-900 text-white py-5 rounded-2xl font-black text-lg mt-8 hover:bg-black transition-all">
                 Place Order
             </button>
         </div>
@@ -608,7 +596,7 @@
     <footer class="bg-white border-t border-gray-200 mt-20 pt-16 pb-10 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-gray-100 pb-16">
-                
+
                 <!-- Section 1: Useful Links -->
                 <div class="md:col-span-4">
                     <h4 class="font-bold text-gray-900 mb-6 text-lg">Useful Links</h4>
@@ -640,20 +628,28 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3 text-sm text-gray-500">
                         <!-- Column 1 -->
                         <ul class="space-y-3">
-                            <li><a href="javascript:filterItems('Fresh Produce')" class="hover:text-green-600">Fruits & Veggies</a></li>
-                            <li><a href="javascript:filterItems('Dairy')" class="hover:text-green-600">Dairy & Eggs</a></li>
-                            <li><a href="javascript:filterItems('Bakery')" class="hover:text-green-600">Bakery & Biscuits</a></li>
+                            <li><a href="javascript:filterItems('Fresh Produce')" class="hover:text-green-600">Fruits &
+                                    Veggies</a></li>
+                            <li><a href="javascript:filterItems('Dairy')" class="hover:text-green-600">Dairy & Eggs</a>
+                            </li>
+                            <li><a href="javascript:filterItems('Bakery')" class="hover:text-green-600">Bakery &
+                                    Biscuits</a></li>
                         </ul>
                         <!-- Column 2 -->
                         <ul class="space-y-3">
-                            <li><a href="javascript:filterItems('Pantry')" class="hover:text-green-600">Pantry Staples</a></li>
-                            <li><a href="javascript:filterItems('Meat')" class="hover:text-green-600">Meat & Seafood</a></li>
-                            <li><a href="javascript:filterItems('Snacks')" class="hover:text-green-600">Snacks & Beverages</a></li>
+                            <li><a href="javascript:filterItems('Pantry')" class="hover:text-green-600">Pantry
+                                    Staples</a></li>
+                            <li><a href="javascript:filterItems('Meat')" class="hover:text-green-600">Meat & Seafood</a>
+                            </li>
+                            <li><a href="javascript:filterItems('Snacks')" class="hover:text-green-600">Snacks &
+                                    Beverages</a></li>
                         </ul>
                         <!-- Column 3 -->
                         <ul class="space-y-3">
-                            <li><a href="javascript:filterItems('Frozen')" class="hover:text-green-600">Frozen Foods</a></li>
-                            <li><a href="javascript:filterItems('Household')" class="hover:text-green-600">Household Essentials</a></li>
+                            <li><a href="javascript:filterItems('Frozen')" class="hover:text-green-600">Frozen Foods</a>
+                            </li>
+                            <li><a href="javascript:filterItems('Household')" class="hover:text-green-600">Household
+                                    Essentials</a></li>
                         </ul>
                     </div>
                 </div>
@@ -664,30 +660,36 @@
                 <div class="text-sm text-gray-500 font-medium order-3 md:order-1">
                     © Pazhamuthir Fresh Commerce Pvt. Ltd., 2016-2026
                 </div>
-                
+
                 <!-- App Store Badges -->
                 <div class="flex items-center gap-4 order-1 md:order-2">
                     <span class="text-sm font-bold text-gray-600 hidden lg:inline">Download App</span>
                     <a href="#" class="hover:opacity-80 transition-opacity">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" class="h-10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                            alt="App Store" class="h-10">
                     </a>
                     <a href="#" class="hover:opacity-80 transition-opacity">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" class="h-10">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                            alt="Play Store" class="h-10">
                     </a>
                 </div>
 
                 <!-- Social Icons (Blinkit Style Circle Icons) -->
                 <div class="flex items-center gap-4 order-2 md:order-3">
-                    <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+                    <a href="#"
+                        class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+                    <a href="#"
+                        class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
                         <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+                    <a href="#"
+                        class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+                    <a href="#"
+                        class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -695,613 +697,14 @@
 
             <!-- Legal Disclaimer -->
             <div class="text-[11px] text-gray-400 leading-relaxed border-t border-gray-100 pt-8">
-                “Pazhamuthir Fresh” is owned & managed by “Pazhamuthir Fresh Commerce Private Limited” and is not related, linked or interconnected in whatsoever manner or nature, to other real estate services or grocery businesses operated by third parties.
+                “Pazhamuthir Fresh” is owned & managed by “Pazhamuthir Fresh Commerce Private Limited” and is not
+                related, linked or interconnected in whatsoever manner or nature, to other real estate services or
+                grocery businesses operated by third parties.
             </div>
         </div>
     </footer>
 
-    <script>
-
-        const products = [
-            // --- FRESH PRODUCE (10 Items) ---
-            { id: 1, cat: 'Fresh Produce', name: 'Alphonso Mango', rating: 4.9, reviews: '2.1k', img: 'https://loremflickr.com/400/400/mango,fruit/all', variants: [{ q: '2 Units', p: 450 }, { q: '6 Units', p: 1200 }] },
-            { id: 2, cat: 'Fresh Produce', name: 'Organic Broccoli', rating: 4.7, reviews: '800', img: 'https://loremflickr.com/400/400/broccoli,vegetable/all', variants: [{ q: '250g', p: 85 }, { q: '500g', p: 160 }] },
-            { id: 3, cat: 'Fresh Produce', name: 'Ooty Carrots', rating: 4.8, reviews: '1.4k', img: 'https://loremflickr.com/400/400/carrot,vegetable/all', variants: [{ q: '500g', p: 40 }, { q: '1kg', p: 75 }] },
-            { id: 13, cat: 'Fresh Produce', name: 'Red Onion', rating: 4.5, reviews: '5k', img: 'https://loremflickr.com/400/400/onion,vegetable/all', variants: [{ q: '1kg', p: 35 }, { q: '5kg', p: 150 }] },
-            { id: 14, cat: 'Fresh Produce', name: 'Golden Bananas', rating: 4.9, reviews: '10k', img: 'https://loremflickr.com/400/400/banana,fruit/all', variants: [{q:'6 Units', p:30}, {q:'12 Units', p:55}] },
-            { id: 15, cat: 'Fresh Produce', name: 'Hybrid Tomato', rating: 4.4, reviews: '3k', img: 'https://loremflickr.com/400/400/tomato,vegetable/all', variants: [{q:'500g', p:20}, {q:'1kg', p:38}] },
-            { id: 16, cat: 'Fresh Produce', name: 'Seedless Grapes', rating: 4.7, reviews: '1.2k', img: 'https://loremflickr.com/400/400/grapes,fruit/all', variants: [{q:'500g', p:90}] },
-            { id: 18, cat: 'Fresh Produce', name: 'Pomegranate', rating: 4.6, reviews: '600', img: 'https://loremflickr.com/400/400/pomegranate,fruit/all', variants: [{q:'2 Units', p:140}] },
-            { id: 17, cat: 'Fresh Produce', name: 'Fresh Spinach', rating: 4.8, reviews: '900', img: 'https://loremflickr.com/400/400/spinach,leafy/all', variants: [{ q: '1 Bunch', p: 15 }] },
-            { id: 19, cat: 'Fresh Produce', name: 'Cucumber', rating: 4.5, reviews: '2k', img: 'https://loremflickr.com/400/400/cucumber,vegetable/all', variants: [{ q: '500g', p: 25 }] },
-
-            // --- DAIRY & EGGS (10 Items) ---
-            { id: 4, cat: 'Dairy', name: 'Pure Cow Milk', rating: 4.9, reviews: '12k', img: 'https://loremflickr.com/400/400/milk,dairy/all', variants: [{ q: '500ml', p: 33 }, { q: '1L', p: 64 }] },
-            { id: 5, cat: 'Dairy', name: 'Amul Salted Butter', rating: 4.6, reviews: '9k', img: 'https://loremflickr.com/400/400/butter,dairy/all', variants: [{ q: '100g', p: 56 }, { q: '500g', p: 265 }] },
-            { id: 20, cat: 'Dairy', name: 'Greek Yogurt', rating: 4.8, reviews: '1.1k', img: 'https://loremflickr.com/400/400/yogurt,dairy/all', variants: [{ q: '200g', p: 70 }] },
-            { id: 21, cat: 'Dairy', name: 'Fresh Paneer', rating: 4.7, reviews: '4k', img: 'https://loremflickr.com/400/400/paneer,cheese/all', variants: [{ q: '200g', p: 95 }, { q: '500g', p: 230 }] },
-            { id: 22, cat: 'Dairy', name: 'Brown Eggs', rating: 4.9, reviews: '5k', img: 'https://loremflickr.com/400/400/eggs,dairy/all', variants: [{ q: '6 Units', p: 55 }, { q: '12 Units', p: 105 }] },
-            { id: 23, cat: 'Dairy', name: 'Cheddar Cheese Slices', rating: 4.5, reviews: '2k', img: 'https://loremflickr.com/400/400/cheese,slice/all', variants: [{ q: '100g', p: 140 }] },
-            { id: 24, cat: 'Dairy', name: 'Soy Milk (Vanilla)', rating: 4.3, reviews: '600', img: 'https://loremflickr.com/400/400/soymilk,bottle/all', variants: [{ q: '1L', p: 180 }] },
-            { id: 25, cat: 'Dairy', name: 'Mozzarella Shredded', rating: 4.7, reviews: '1.5k', img: 'https://loremflickr.com/400/400/mozzarella,cheese/all', variants: [{ q: '200g', p: 210 }] },
-            { id: 26, cat: 'Dairy', name: 'Probiotic Drink', rating: 4.8, reviews: '3k', img: 'https://loremflickr.com/400/400/drink,bottle/all', variants: [{ q: '5 Units', p: 60 }] },
-            { id: 27, cat: 'Dairy', name: 'Dairy Whitener', rating: 4.2, reviews: '2k', img: 'https://loremflickr.com/400/400/milkpowder,dairy/all', variants: [{ q: '500g', p: 220 }] },
-
-            // --- BAKERY (10 Items) ---
-            { id: 6, cat: 'Bakery', name: 'Whole Wheat Bread', rating: 4.5, reviews: '3k', img: 'https://loremflickr.com/400/400/bread,bakery/all', variants: [{ q: '400g', p: 45 }] },
-            { id: 7, cat: 'Bakery', name: 'Chocolate Muffins', rating: 4.8, reviews: '1.2k', img: 'https://loremflickr.com/400/400/muffin,cake/all', variants: [{ q: '2 Units', p: 90 }, { q: '4 Units', p: 160 }] },
-            { id: 30, cat: 'Bakery', name: 'Butter Croissants', rating: 4.9, reviews: '800', img: 'https://loremflickr.com/400/400/croissant,bakery/all', variants: [{ q: '2 Units', p: 120 }] },
-            { id: 31, cat: 'Bakery', name: 'Garlic Bread Sticks', rating: 4.6, reviews: '2k', img: 'https://loremflickr.com/400/400/garlic-bread,bakery/all', variants: [{ q: '150g', p: 75 }] },
-            { id: 32, cat: 'Bakery', name: 'Multi-grain Cookies', rating: 4.7, reviews: '3k', img: 'https://loremflickr.com/400/400/cookie,biscuit/all', variants: [{ q: '200g', p: 110 }] },
-            { id: 33, cat: 'Bakery', name: 'Burger Buns', rating: 4.4, reviews: '1.5k', img: 'https://loremflickr.com/400/400/bun,bread/all', variants: [{ q: '2 Units', p: 40 }] },
-            { id: 34, cat: 'Bakery', name: 'Pav (Set of 6)', rating: 4.8, reviews: '4k', img: 'https://loremflickr.com/400/400/pav,bread/all', variants: [{ q: '6 Units', p: 35 }] },
-            { id: 35, cat: 'Bakery', name: 'Blueberry Cake', rating: 4.9, reviews: '500', img: 'https://loremflickr.com/400/400/cake,blueberry/all', variants: [{ q: '500g', p: 550 }] },
-            { id: 36, cat: 'Bakery', name: 'Plain Tortillas', rating: 4.3, reviews: '900', img: 'https://loremflickr.com/400/400/tortilla,wrap/all', variants: [{ q: '6 Units', p: 95 }] },
-            { id: 37, cat: 'Bakery', name: 'Fruit Bun', rating: 4.5, reviews: '1.1k', img: 'https://loremflickr.com/400/400/fruitbun,bakery/all', variants: [{ q: '1 Unit', p: 25 }] },
-
-            // --- PANTRY STAPLES (10 Items) ---
-            { id: 8, cat: 'Pantry', name: 'Basmati Rice', rating: 4.7, reviews: '5k', img: 'https://loremflickr.com/400/400/rice,grain/all', variants: [{ q: '1kg', p: 130 }, { q: '5kg', p: 610 }] },
-            { id: 9, cat: 'Pantry', name: 'Organic Turmeric', rating: 4.9, reviews: '400', img: 'https://loremflickr.com/400/400/turmeric,spice/all', variants: [{ q: '100g', p: 45 }, { q: '200g', p: 80 }] },
-            { id: 40, cat: 'Pantry', name: 'Sunflower Oil', rating: 4.6, reviews: '8k', img: 'https://loremflickr.com/400/400/cooking-oil,bottle/all', variants: [{ q: '1L', p: 145 }, { q: '5L', p: 700 }] },
-            { id: 41, cat: 'Pantry', name: 'Wheat Flour (Atta)', rating: 4.8, reviews: '15k', img: 'https://loremflickr.com/400/400/flour,bag/all', variants: [{ q: '5kg', p: 260 }, { q: '10kg', p: 510 }] },
-            { id: 42, cat: 'Pantry', name: 'Toor Dal', rating: 4.7, reviews: '4k', img: 'https://loremflickr.com/400/400/dal,pulses/all', variants: [{ q: '1kg', p: 160 }] },
-            { id: 43, cat: 'Pantry', name: 'Iodized Salt', rating: 4.9, reviews: '20k', img: 'https://loremflickr.com/400/400/salt,white/all', variants: [{ q: '1kg', p: 28 }] },
-            { id: 44, cat: 'Pantry', name: 'Refined Sugar', rating: 4.5, reviews: '10k', img: 'https://loremflickr.com/400/400/sugar,grain/all', variants: [{ q: '1kg', p: 48 }] },
-            { id: 45, cat: 'Pantry', name: 'Red Chilli Powder', rating: 4.6, reviews: '3k', img: 'https://loremflickr.com/400/400/chilli-powder,spice/all', variants: [{ q: '200g', p: 90 }] },
-            { id: 46, cat: 'Pantry', name: 'Pure Ghee', rating: 4.9, reviews: '7k', img: 'https://loremflickr.com/400/400/ghee,jar/all', variants: [{ q: '500ml', p: 350 }, { q: '1L', p: 680 }] },
-            { id: 47, cat: 'Pantry', name: 'Extra Virgin Olive Oil', rating: 4.8, reviews: '1.2k', img: 'https://loremflickr.com/400/400/olive-oil,bottle/all', variants: [{ q: '500ml', p: 750 }] },
-
-            // --- MEAT & SEAFOOD (10 Items) ---
-            { id: 10, cat: 'Meat', name: 'Fresh Chicken Curry Cut', rating: 4.8, reviews: '1.1k', img: 'https://loremflickr.com/400/400/chicken,meat/all', variants: [{ q: '500g', p: 180 }, { q: '1kg', p: 340 }] },
-            { id: 50, cat: 'Meat', name: 'Chicken Breast Boneless', rating: 4.9, reviews: '3k', img: 'https://loremflickr.com/400/400/chickenbreast,meat/all', variants: [{ q: '500g', p: 260 }] },
-            { id: 51, cat: 'Meat', name: 'Fresh Prawns (Medium)', rating: 4.7, reviews: '900', img: 'https://loremflickr.com/400/400/prawns,seafood/all', variants: [{ q: '250g', p: 240 }, { q: '500g', p: 460 }] },
-            { id: 52, cat: 'Meat', name: 'Rohu Fish Steak', rating: 4.6, reviews: '1.5k', img: 'https://loremflickr.com/400/400/fish,steak/all', variants: [{ q: '500g', p: 280 }] },
-            { id: 53, cat: 'Meat', name: 'Mutton Curry Cut', rating: 4.8, reviews: '2k', img: 'https://loremflickr.com/400/400/mutton,meat/all', variants: [{ q: '500g', p: 450 }] },
-            { id: 54, cat: 'Meat', name: 'Chicken Wings', rating: 4.5, reviews: '1.2k', img: 'https://loremflickr.com/400/400/chickenwings,meat/all', variants: [{ q: '500g', p: 190 }] },
-            { id: 55, cat: 'Meat', name: 'Seer Fish Slices', rating: 4.9, reviews: '400', img: 'https://loremflickr.com/400/400/fishslices,seafood/all', variants: [{ q: '500g', p: 650 }] },
-            { id: 56, cat: 'Meat', name: 'Chicken Lollipop', rating: 4.7, reviews: '2k', img: 'https://loremflickr.com/400/400/lollipop,meat/all', variants: [{ q: '10 Units', p: 210 }] },
-            { id: 57, cat: 'Meat', name: 'Eggs (Pack of 30)', rating: 4.9, reviews: '8k', img: 'https://loremflickr.com/400/400/eggbox,dairy/all', variants: [{ q: '30 Units', p: 210 }] },
-            { id: 58, cat: 'Meat', name: 'Salmon Fillet', rating: 4.8, reviews: '300', img: 'https://loremflickr.com/400/400/salmon,fish/all', variants: [{ q: '250g', p: 850 }] },
-
-            // --- SNACKS & BEVERAGES (10 Items) ---
-            { id: 11, cat: 'Snacks', name: 'Classic Salted Chips', rating: 4.4, reviews: '20k', img: 'https://loremflickr.com/400/400/chips,snack/all', variants: [{ q: 'Regular', p: 20 }, { q: 'Large', p: 50 }] },
-            { id: 60, cat: 'Snacks', name: 'Coca Cola Can', rating: 4.8, reviews: '15k', img: 'https://loremflickr.com/400/400/cola,soda/all', variants: [{ q: '330ml', p: 40 }] },
-            { id: 61, cat: 'Snacks', name: 'Roasted Almonds', rating: 4.7, reviews: '2k', img: 'https://loremflickr.com/400/400/almonds,nuts/all', variants: [{ q: '200g', p: 280 }] },
-            { id: 62, cat: 'Snacks', name: 'Oreo Biscuits', rating: 4.9, reviews: '30k', img: 'https://loremflickr.com/400/400/oreo,biscuit/all', variants: [{ q: '120g', p: 35 }] },
-            { id: 63, cat: 'Snacks', name: 'Orange Juice', rating: 4.5, reviews: '4k', img: 'https://loremflickr.com/400/400/juice,orange/all', variants: [{ q: '1L', p: 110 }] },
-            { id: 64, cat: 'Snacks', name: 'Dark Chocolate (70%)', rating: 4.8, reviews: '1.2k', img: 'https://loremflickr.com/400/400/chocolate,dark/all', variants: [{ q: '100g', p: 180 }] },
-            { id: 65, cat: 'Snacks', name: 'Instant Coffee', rating: 4.7, reviews: '8k', img: 'https://loremflickr.com/400/400/coffee,mug/all', variants: [{ q: '100g', p: 295 }] },
-            { id: 66, cat: 'Snacks', name: 'Green Tea Bags', rating: 4.6, reviews: '5k', img: 'https://loremflickr.com/400/400/greentea,bags/all', variants: [{ q: '25 Bags', p: 150 }] },
-            { id: 67, cat: 'Snacks', name: 'Salted Cashews', rating: 4.8, reviews: '1.5k', img: 'https://loremflickr.com/400/400/cashews,nuts/all', variants: [{ q: '200g', p: 320 }] },
-            { id: 68, cat: 'Snacks', name: 'Mineral Water', rating: 4.9, reviews: '50k', img: 'https://loremflickr.com/400/400/water,bottle/all', variants: [{ q: '1L', p: 20 }, { q: '5L', p: 75 }] },
-
-            // --- FROZEN FOODS (10 Items) ---
-            { id: 70, cat: 'Frozen', name: 'Frozen Green Peas', rating: 4.6, reviews: '4k', img: 'https://loremflickr.com/400/400/peas,frozen/all', variants: [{ q: '500g', p: 65 }] },
-            { id: 71, cat: 'Frozen', name: 'French Fries', rating: 4.7, reviews: '9k', img: 'https://loremflickr.com/400/400/frenchfries,frozen/all', variants: [{ q: '750g', p: 195 }] },
-            { id: 72, cat: 'Frozen', name: 'Vanilla Ice Cream', rating: 4.9, reviews: '12k', img: 'https://loremflickr.com/400/400/icecream,vanilla/all', variants: [{ q: '1L', p: 240 }] },
-            { id: 73, cat: 'Frozen', name: 'Chicken Nuggets', rating: 4.8, reviews: '6k', img: 'https://loremflickr.com/400/400/nuggets,frozen/all', variants: [{ q: '500g', p: 320 }] },
-            { id: 74, cat: 'Frozen', name: 'Frozen Sweet Corn', rating: 4.7, reviews: '2.5k', img: 'https://loremflickr.com/400/400/corn,frozen/all', variants: [{ q: '500g', p: 85 }] },
-            { id: 75, cat: 'Frozen', name: 'Paneer Tikka Pizza', rating: 4.4, reviews: '1k', img: 'https://loremflickr.com/400/400/pizza,frozen/all', variants: [{ q: '300g', p: 250 }] },
-            { id: 76, cat: 'Frozen', name: 'Frozen Paratha', rating: 4.6, reviews: '3k', img: 'https://loremflickr.com/400/400/paratha,frozen/all', variants: [{ q: '4 Units', p: 110 }] },
-            { id: 77, cat: 'Frozen', name: 'Prawns (Frozen)', rating: 4.7, reviews: '800', img: 'https://loremflickr.com/400/400/prawns,frozen/all', variants: [{ q: '500g', p: 480 }] },
-            { id: 78, cat: 'Frozen', name: 'Fruit Sorbet', rating: 4.8, reviews: '400', img: 'https://loremflickr.com/400/400/sorbet,frozen/all', variants: [{ q: '500ml', p: 350 }] },
-            { id: 79, cat: 'Frozen', name: 'Potato Wedges', rating: 4.5, reviews: '2k', img: 'https://loremflickr.com/400/400/wedges,frozen/all', variants: [{ q: '400g', p: 140 }] },
-
-            // --- HOUSEHOLD & CLEANING (10 Items) ---
-            { id: 12, cat: 'Household', name: 'Liquid Detergent', rating: 4.7, reviews: '6k', img: 'https://loremflickr.com/400/400/detergent,soap/all', variants: [{ q: '1L', p: 210 }, { q: '5L', p: 950 }] },
-            { id: 80, cat: 'Household', name: 'Dishwash Gel', rating: 4.8, reviews: '15k', img: 'https://loremflickr.com/400/400/dishwash,gel/all', variants: [{ q: '500ml', p: 105 }] },
-            { id: 81, cat: 'Household', name: 'Toilet Cleaner', rating: 4.6, reviews: '12k', img: 'https://loremflickr.com/400/400/cleaner,bottle/all', variants: [{ q: '1L', p: 165 }] },
-            { id: 82, cat: 'Household', name: 'Floor Cleaner (Pine)', rating: 4.5, reviews: '8k', img: 'https://loremflickr.com/400/400/floorcleaner,pine/all', variants: [{ q: '1L', p: 140 }] },
-            { id: 83, cat: 'Household', name: 'Kitchen Towels', rating: 4.9, reviews: '5k', img: 'https://loremflickr.com/400/400/towels,paper/all', variants: [{ q: '2 Rolls', p: 120 }] },
-            { id: 84, cat: 'Household', name: 'Garbage Bags (Large)', rating: 4.7, reviews: '10k', img: 'https://loremflickr.com/400/400/garbagebag,trash/all', variants: [{ q: '30 Bags', p: 95 }] },
-            { id: 85, cat: 'Household', name: 'Hand Wash Refill', rating: 4.8, reviews: '20k', img: 'https://loremflickr.com/400/400/handwash,soap/all', variants: [{ q: '750ml', p: 185 }] },
-            { id: 86, cat: 'Household', name: 'Glass Cleaner Spray', rating: 4.6, reviews: '4k', img: 'https://loremflickr.com/400/400/glasscleaner,spray/all', variants: [{ q: '500ml', p: 95 }] },
-            { id: 87, cat: 'Household', name: 'Air Freshener Spray', rating: 4.4, reviews: '6k', img: 'https://loremflickr.com/400/400/freshener,spray/all', variants: [{ q: '300ml', p: 150 }] },
-            { id: 88, cat: 'Household', name: 'Scrub Pads (Pack of 3)', rating: 4.9, reviews: '15k', img: 'https://loremflickr.com/400/400/scrub,cleaning/all', variants: [{ q: '3 Units', p: 45 }] }
-        ];
-
-        let cart = [];
-        let currentCat = 'All';
-
-        function render() {
-            const container = document.getElementById('product-container');
-            container.innerHTML = '';
-            const filtered = currentCat === 'All' ? products : products.filter(p => p.cat === currentCat);
-
-            filtered.forEach(p => {
-                container.innerHTML += `
-                    <div class="product-card bg-white p-4 rounded-[2rem] border border-gray-100 flex flex-col group">
-                        <div class="relative overflow-hidden rounded-2xl mb-4">
-                            <img src="${p.img}" class="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute top-2 left-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-black text-green-700">★ ${p.rating}</div>
-                        </div>
-                        <h4 class="font-bold text-gray-800 text-sm leading-tight mb-1 h-10 overflow-hidden">${p.name}</h4>
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">${p.cat}</p>
-                        
-                         <select onchange="updatePrice(this, ${p.id})" class="text-xs bg-gray-50 border-none rounded-xl p-2.5 mb-4 focus:ring-1 focus:ring-green-500 outline-none">
-                             ${p.variants.map(v => `<option value="${v.p}">${v.q} - ₹${v.p}</option>`).join('')}
-                         </select>
-
-                        <div class="mt-auto flex justify-between items-center">
-                            <span id="price-tag-${p.id}" class="text-lg font-black text-gray-900">₹${p.variants[0].p}</span>
-                            <button onclick="addToCart(${p.id}, '${p.name}')" class="bg-green-600 text-white px-5 py-2 rounded-xl font-bold text-xs shadow-lg shadow-green-100 active:scale-95 transition-all">ADD</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-
-
-        function filterItems(cat) {
-            currentCat = cat;
-            document.querySelectorAll('.category-pill').forEach(b => {
-                b.classList.remove('active');
-                if (b.innerText.includes(cat) || (cat === 'All' && b.innerText === 'All')) b.classList.add('active');
-            });
-            render();
-        }
-
-        function toggleProfile() {
-            const drawer = document.getElementById('profile-drawer');
-            const backdrop = document.getElementById('drawer-backdrop');
-            const loginBtn = document.getElementById('login-btn');
-
-            drawer.classList.toggle('open');
-            backdrop.classList.toggle('show');
-
-            if (drawer.classList.contains('open')) {
-                document.body.style.overflow = 'hidden';
-                loginBtn.classList.add('hidden');   // Hide login button
-            } else {
-                document.body.style.overflow = 'auto';
-                loginBtn.classList.remove('hidden'); // Show login button
-            }
-        }
-
-
-        function updatePrice(sel, id) {
-            document.getElementById(`price-tag-${id}`).innerText = `₹${sel.value}`;
-        }
-
-        // function addToCart(id) {
-        //     const product = products.find(p => p.id === id);
-        //     cart.push({...product, image: `https://loremflickr.com/400/400/grocery,${product.img}`});
-        //     updateCart();
-        // }
-
-
-
-        // function updateCart() {
-        //     const total = cart.reduce((s, i) => s + i.price, 0);
-        //     document.getElementById('cart-count').innerText = cart.length;
-        //     document.getElementById('footer-item-count').innerText = `${cart.length} ITEMS`;
-        //     document.getElementById('footer-total').innerText = `₹${total}`;
-        //     if (cart.length > 0) document.getElementById('cart-footer').classList.remove('hidden');
-        // }
-
-        // 1. Updated addToCart to capture the selected price from the dropdown
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            // In your current render, you use p.variants[0].p as default. 
-            // Here we just grab the first variant price for simplicity in this demo.
-            const price = product.variants[0].p; 
-            
-            cart.push({
-                id: Date.now(), // Unique ID for cart item
-                productId: product.id,
-                name: product.name,
-                price: price,
-                img: product.img
-            });
-            updateCart();
-        }
-
-        // 2. Updated updateCart to refresh the UI and the modal list
-        function updateCart() {
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            
-            // Update counts
-            document.getElementById('cart-count').innerText = cart.length;
-            document.getElementById('footer-item-count').innerText = `${cart.length} ITEMS`;
-            document.getElementById('footer-total').innerText = `₹${total}`;
-            
-            // Show/Hide Footer
-            const footer = document.getElementById('cart-footer');
-            if (cart.length > 0) {
-                footer.classList.remove('hidden');
-            } else {
-                footer.classList.add('hidden');
-            }
-
-            // Update the Modal List
-            const list = document.getElementById('cart-items-list');
-            list.innerHTML = '';
-            
-            if (cart.length === 0) {
-                list.innerHTML = '<p class="text-center text-gray-400 py-10 font-bold">Your cart is empty</p>';
-            }
-
-            cart.forEach((item, index) => {
-                list.innerHTML += `
-                    <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-2xl">
-                        <img src="${item.img}" class="w-12 h-12 rounded-xl object-cover">
-                        <div class="flex-1">
-                            <h5 class="font-bold text-sm">${item.name}</h5>
-                            <p class="text-xs font-black text-green-600">₹${item.price}</p>
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500 p-2">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                `;
-            });
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        // Initialize Wallet from Storage or 0
-            let walletBalance = parseFloat(localStorage.getItem('userWallet')) || 0;
-            document.getElementById('wallet-balance-display').innerText = `₹${walletBalance.toFixed(2)}`;
-
-            function addMoneyToWallet() {
-                const amount = prompt("Enter amount to add to Pazhamuthir Wallet:");
-                if (amount && !isNaN(amount)) {
-                    walletBalance += parseFloat(amount);
-                    localStorage.setItem('userWallet', walletBalance);
-                    document.getElementById('wallet-balance-display').innerText = `₹${walletBalance.toFixed(2)}`;
-                    alert(`₹${amount} added successfully! New Balance: ₹${walletBalance}`);
-                }
-            }
-
-            // Updated Checkout to include Slots and Total Move
-            function processCheckout() {
-                const totalAmount = document.getElementById('footer-total').innerText;
-                const selectedSlot = document.querySelector('input[name="delivery-slot"]:checked').value;
-
-                if(cart.length === 0) return alert("Add items to cart first!");
-
-                // Save history before moving to tracking
-                saveToPurchaseHistory();
-
-                localStorage.setItem('orderTotal', totalAmount);
-                localStorage.setItem('deliverySlot', selectedSlot);
-
-                alert(`Order Confirmed for ${selectedSlot}!\nYour frequent list has been updated.`);
-                window.location.href = 'Tracking.html';
-            }
-
-            // 4. Initialize in the existing render/init part
-            document.addEventListener('DOMContentLoaded', () => {
-                render();
-                renderSmartReorder(); // Call the reorder hub on load
-            });
-
-        function renderSmartReorder() {
-            const history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
-            const hub = document.getElementById('reorder-hub');
-            const list = document.getElementById('smart-reorder-list');
-
-            if (history.length === 0) {
-                hub.classList.add('hidden');
-                return;
-            }
-
-            hub.classList.remove('hidden');
-            list.innerHTML = '';
-
-            history.forEach(item => {
-                list.innerHTML += `
-                    <div class="flex-shrink-0 w-44 bg-white p-4 rounded-[2rem] border border-purple-50 shadow-sm hover:shadow-md transition-all group">
-                        <div class="relative mb-3">
-                            <img src="${item.img}" class="w-full h-24 object-cover rounded-2xl group-hover:scale-105 transition-transform">
-                            <div class="absolute -bottom-2 -right-1 bg-purple-600 text-white text-[8px] font-black px-2 py-1 rounded-lg shadow-lg">
-                                BOUGHT ${item.count}x
-                            </div>
-                        </div>
-                        <h5 class="font-bold text-xs text-gray-800 leading-tight h-8 overflow-hidden">${item.name}</h5>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="font-black text-sm">₹${item.price}</span>
-                            <button onclick="addToCart(${item.productId})" class="bg-purple-100 text-purple-600 p-2 rounded-xl hover:bg-purple-600 hover:text-white transition-all">
-                                <i class="fa-solid fa-plus text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        // --- TOGGLE REORDER HISTORY ---
-        function toggleReorderHistory() {
-            const list = document.getElementById('smart-reorder-list');
-            const btn = document.getElementById('view-history-btn');
-
-            // Toggle the 'hidden' class
-            if (list.classList.contains('hidden')) {
-                list.classList.remove('hidden');
-                list.classList.add('flex'); // Ensure flex is applied when shown
-                btn.innerText = "HIDE HISTORY";
-                btn.classList.replace('text-purple-600', 'text-gray-400'); // Change style when open
-            } else {
-                list.classList.add('hidden');
-                list.classList.remove('flex');
-                btn.innerText = "VIEW HISTORY";
-                btn.classList.replace('text-gray-400', 'text-purple-600');
-            }
-        }
-
-        // Update your renderSmartReorder function to ensure it doesn't force the list open
-        function renderSmartReorder() {
-            const history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
-            const hub = document.getElementById('reorder-hub');
-            const list = document.getElementById('smart-reorder-list');
-
-            if (history.length === 0) {
-                hub.classList.add('hidden');
-                return;
-            }
-
-            // Show the Hub (Title + Button) but keep the list hidden
-            hub.classList.remove('hidden');
-            
-            list.innerHTML = history.map(item => `
-                <div class="flex-shrink-0 w-44 bg-white p-4 rounded-[2rem] border border-purple-50 shadow-sm hover:shadow-md transition-all group">
-                    <div class="relative mb-3">
-                        <img src="${item.img}" class="w-full h-24 object-cover rounded-2xl group-hover:scale-105 transition-transform">
-                        <div class="absolute -bottom-2 -right-1 bg-purple-600 text-white text-[8px] font-black px-2 py-1 rounded-lg shadow-lg">
-                            BOUGHT ${item.count}x
-                        </div>
-                    </div>
-                    <h5 class="font-bold text-xs text-gray-800 leading-tight h-8 overflow-hidden">${item.name}</h5>
-                    <div class="flex items-center justify-between mt-2">
-                        <span class="font-black text-sm">₹${item.price}</span>
-                        <button onclick="addToCart(${item.productId}, '${item.name.replace(/'/g, "\\'")}')" class="bg-purple-100 text-purple-600 p-2 rounded-xl hover:bg-purple-600 hover:text-white transition-all">
-                            <i class="fa-solid fa-plus text-xs"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function saveToPurchaseHistory() {
-            let history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
-            
-            cart.forEach(cartItem => {
-                // Find if item already exists in history
-                const existingIndex = history.findIndex(h => h.productId === cartItem.productId);
-                
-                if (existingIndex > -1) {
-                    history[existingIndex].count += 1;
-                    history[existingIndex].lastBought = new Date().toLocaleDateString();
-                } else {
-                    history.push({
-                        productId: cartItem.productId,
-                        name: cartItem.name,
-                        img: cartItem.img,
-                        price: cartItem.price,
-                        count: 1,
-                        lastBought: new Date().toLocaleDateString()
-                    });
-                }
-            });
-
-            // Keep only top 10 frequent items
-            history.sort((a, b) => b.count - a.count);
-            localStorage.setItem('purchaseHistory', JSON.stringify(history.slice(0, 10)));
-        }
-
-
-
-        function toggleModal(id) {
-            const modal = document.getElementById(id);
-            const profileBtn = document.getElementById('profile-btn');
-
-            modal.classList.toggle('hidden');
-
-            if (!modal.classList.contains('hidden')) {
-                profileBtn.classList.add('hidden');  // Hide profile button
-            } else {
-                profileBtn.classList.remove('hidden'); // Show profile button
-            }
-        }
-
-        // --- ENHANCED FLASH SALE ENGINE ---
-
-        function initFlashSale() {
-            let timeLeft = 15 * 60; // 15 Minutes
-            
-            const timerDisplay = document.getElementById('flash-timer');
-            
-            const flashTimer = setInterval(() => {
-                timeLeft--;
-                
-                // Timer Display Logic
-                const hrs = Math.floor(timeLeft / 3600);
-                const mins = Math.floor((timeLeft % 3600) / 60);
-                const secs = timeLeft % 60;
-                timerDisplay.innerText = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-                // Randomly Decrease Stock for all 3 products to simulate real buyers
-                if (timeLeft % 8 === 0) updateStock('f-qty-1', 'f-prog-1', 10);
-                if (timeLeft % 12 === 0) updateStock('f-qty-2', 'f-prog-2', 15);
-                if (timeLeft % 5 === 0) updateStock('f-qty-3', 'f-prog-3', 20);
-
-                if (timeLeft <= 0) {
-                    clearInterval(flashTimer);
-                    document.getElementById('flash-sale').classList.add('grayscale', 'opacity-50', 'pointer-events-none');
-                    timerDisplay.innerText = "EXPIRED";
-                }
-            }, 1000);
-        }
-
-        function updateStock(qtyId, progId, max) {
-            const qtyEl = document.getElementById(qtyId);
-            const progEl = document.getElementById(progId);
-            let current = parseInt(qtyEl.innerText);
-            
-            if (current > 0) {
-                current--;
-                qtyEl.innerText = current;
-                let perc = (current / max) * 100;
-                progEl.style.width = perc + "%";
-                
-                // Change color based on scarcity
-                if (current < 5) progEl.classList.replace('bg-green-500', 'bg-red-600');
-            } else {
-                qtyEl.innerText = "0";
-            }
-        }
-
-        // Special function to add items with the flash sale price
-        function addFlashToCart(id, name, salePrice, imgUrl) {
-            // Check if item already claimed (optional logic)
-            cart.push({
-                id: Date.now() + Math.random(), // Unique instance
-                productId: 'FLASH-' + id,
-                name: name,
-                price: salePrice,
-                img: imgUrl,
-                qty: '1 Unit (Limit)'
-            });
-            
-            // Trigger the standard update functions already in your Groceries.html
-            updateCart();
-            
-            // Fancy notification
-            const btn = event.target;
-            btn.innerText = "CLAIMED!";
-            btn.classList.replace('bg-gray-900', 'bg-green-600');
-            setTimeout(() => {
-                btn.innerText = "CLAIM DEAL";
-                btn.classList.replace('bg-green-600', 'bg-gray-900');
-            }, 2000);
-        }
-
-        // Call initFlashSale inside your DOMContentLoaded listener
-        document.addEventListener('DOMContentLoaded', () => {
-            render();
-            renderSmartReorder();
-            initFlashSale(); // START THE ENGINE
-        });
-
-
-
-        // --- KITCHEN DATA API SIMULATION ---
-        const kitchenRecipes = [
-            {
-                title: "Fruit Custard",
-                desc: "10 Mins • Gourmet Dessert",
-                video: "https://assets.mixkit.co/videos/preview/mixkit-fresh-seasonal-fruit-salad-42407-large.mp4",
-                //video: "https://www.youtube.com/shorts/dAY2tFtNDqE",
-                items: [1, 4, 14]
-            },
-            {
-                title: "Detox Green Salad",
-                desc: "5 Mins • High Fiber",
-                video: "https://assets.mixkit.co/videos/preview/mixkit-vegetables-and-fruits-arranged-on-a-table-41221-large.mp4",
-                items: [2, 3, 19, 15] 
-            },
-            {
-                title: "Classic Avocado Toast",
-                desc: "12 Mins • Protein Rich",
-                video: "https://assets.mixkit.co/videos/preview/mixkit-preparing-a-salad-with-fresh-vegetables-42410-large.mp4",
-                items: [6, 22, 23, 5] 
-            },
-        ];
-
-        let currentKitchenIdx = 0;
-
-        // TOGGLE FUNCTION
-        function toggleKitchen() {
-            const hub = document.getElementById('kitchen-hub');
-            hub.classList.toggle('hidden');
-            
-            if(!hub.classList.contains('hidden')) {
-                hub.scrollIntoView({ behavior: 'smooth' });
-                changeRecipe(0); // Load default
-            }
-        }
-
-        // CHANGE RECIPE FUNCTION
-        function changeRecipe(idx) {
-            currentKitchenIdx = idx;
-            const r = kitchenRecipes[idx];
-            
-            // Update Content
-            document.getElementById('recipe-title').innerText = r.title;
-            document.getElementById('recipe-desc').innerText = r.desc;
-            document.getElementById('recipe-video-api').src = r.video;
-            
-            // Update Tabs UI
-            const tabs = document.querySelectorAll('.recipe-tab');
-            tabs.forEach((t, i) => {
-                t.classList.toggle('active', i === idx);
-                t.classList.toggle('border-green-500', i === idx);
-                t.classList.toggle('text-white', i === idx);
-                t.classList.toggle('text-gray-500', i !== idx);
-            });
-
-            renderKitchenIngredients();
-        }
-
-        function renderKitchenIngredients() {
-            const r = kitchenRecipes[currentKitchenIdx];
-            const list = document.getElementById('recipe-ingredients-list');
-            let total = 0;
-
-            list.innerHTML = r.items.map(id => {
-                const p = products.find(prod => prod.id === id);
-                total += p.variants[0].p;
-                return `
-                    <div class="flex items-center justify-between bg-gray-50 p-4 rounded-2xl border border-gray-100">
-                        <div class="flex items-center gap-4">
-                            <img src="${p.img}" class="w-10 h-10 rounded-lg object-cover bg-white">
-                            <div>
-                                <p class="font-bold text-gray-800 text-sm leading-none mb-1">${p.name}</p>
-                                <p class="text-[9px] font-black text-gray-400 uppercase tracking-widest">${p.variants[0].q}</p>
-                            </div>
-                        </div>
-                        <span class="font-black text-gray-900 text-sm">₹${p.variants[0].p}</span>
-                    </div>
-                `;
-            }).join('');
-
-            document.getElementById('recipe-total-price').innerText = `₹${total}`;
-        }
-
-        function addRecipeKit() {
-            const r = kitchenRecipes[currentKitchenIdx];
-            const btn = document.getElementById('add-recipe-btn');
-            
-            r.items.forEach(id => {
-                const p = products.find(prod => prod.id === id);
-                cart.push({
-                    productId: p.id,
-                    name: p.name,
-                    price: p.variants[0].p,
-                    img: p.img
-                });
-            });
-
-            updateCart();
-            
-            btn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> ADDING KIT...`;
-            setTimeout(() => {
-                btn.innerHTML = `<i class="fa-solid fa-check"></i> KIT ADDED TO CART`;
-                btn.classList.replace('bg-green-600', 'bg-black');
-                setTimeout(() => {
-                    btn.innerHTML = `ADD ALL INGREDIENTS <i class="fa-solid fa-cart-plus"></i>`;
-                    btn.classList.replace('bg-black', 'bg-green-600');
-                }, 2000);
-            }, 1000);
-        }
-
-        // Initialize
-        render();
-    </script>
+    <script src="Groceries.js"></script>
 </body>
 
 </html>
