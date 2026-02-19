@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Elite Pro | Pazhamuthir Logistics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Deliverier.css">
+</head>
+<body class="h-screen flex flex-col relative">
+
+    <div class="map-bg"></div>
+
+    <!-- Header -->
+    <header class="relative z-50 p-6 flex justify-between items-center bg-slate-950/60 backdrop-blur-xl border-b border-white/5">
+        <div class="flex items-center gap-4">
+            <div class="relative cursor-pointer active:scale-90 transition-transform">
+                <img src="https://i.pravatar.cc/100?u=rider1" class="w-12 h-12 rounded-2xl border-2 border-green-500 shadow-lg">
+                <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-950"></div>
+            </div>
+            <div>
+                <h1 id="view-title" class="text-[10px] font-black uppercase tracking-[0.2em] text-green-500 mb-1">Elite Fleet</h1>
+                <p class="text-sm font-bold">Arul Kumar</p>
+            </div>
+        </div>
+        <div class="text-right glass px-4 py-2 rounded-2xl border-green-500/20">
+            <p class="text-[8px] text-slate-400 font-bold uppercase tracking-widest">Earnings</p>
+            <p id="main-balance" class="text-lg font-black text-white">₹1,420</p>
+        </div>
+    </header>
+
+    <main class="relative z-10 flex-1 px-4 pt-6 overflow-hidden">
+
+        <!-- 1. HOME VIEW -->
+        <div id="home-view" class="view-section active space-y-6 no-scrollbar">
+            
+            <!-- Reputation & Active Badges Row -->
+            <div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+                <div class="glass p-3 rounded-2xl flex items-center gap-3 min-w-[140px] border-l-4 border-yellow-500">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1162/1162456.png" class="w-8 h-8 badge-glow">
+                    <div><p class="text-[8px] font-black text-slate-400 uppercase">Speed</p><p class="text-xs font-bold">Lightning</p></div>
+                </div>
+                <div class="glass p-3 rounded-2xl flex items-center gap-3 min-w-[140px] border-l-4 border-blue-500">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" class="w-8 h-8 opacity-40 grayscale">
+                    <div><p class="text-[8px] font-black text-slate-400 uppercase">Safety</p><p class="text-xs font-bold text-slate-500">Locked</p></div>
+                </div>
+                <div class="glass p-3 rounded-2xl flex items-center gap-3 min-w-[140px] border-l-4 border-green-500">
+                    <i class="fa-solid fa-medal text-green-500 text-xl"></i>
+                    <div><p class="text-[8px] font-black text-slate-400 uppercase">Rating</p><p class="text-xs font-bold">4.9 Star</p></div>
+                </div>
+            </div>
+
+            <!-- STATE A: IDLE -->
+            <div id="state-idle" class="py-12 flex flex-col items-center space-y-8">
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-green-500/20 rounded-full pulse-radar"></div>
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl shadow-xl neon-green">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-lg font-black tracking-tight uppercase italic animate-pulse">Scanning orders...</p>
+                    <button onclick="simulateRequest()" class="mt-4 bg-white/5 text-slate-500 text-[9px] font-black px-6 py-2 rounded-full border border-white/10 uppercase hover:bg-white/10 transition-all">Incoming Demo</button>
+                </div>
+            </div>
+
+            <!-- STATE B: REQUEST -->
+            <div id="state-request" class="hidden glass p-8 rounded-[3rem] shadow-2xl border-t-4 border-blue-500">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="bg-blue-600 text-white text-[10px] font-black px-4 py-1 rounded-full uppercase">Sub-10m Delivery</span>
+                    <span class="text-xs font-bold text-slate-400">1.2 km • ₹115.00</span>
+                </div>
+                <h3 class="text-2xl font-black mb-1 italic">Flash Request</h3>
+                <p class="text-sm text-slate-400 mb-6 font-medium"><i class="fa-solid fa-store mr-1"></i> Pazhamuthir Dark Store #02</p>
+                <div class="flex gap-3">
+                    <button onclick="resetToIdle()" class="flex-1 bg-slate-800 text-slate-400 py-4 rounded-2xl font-black text-xs uppercase">Decline</button>
+                    <button onclick="acceptOrder()" class="flex-1 bg-green-500 text-black py-4 rounded-2xl font-black text-xs uppercase neon-green">Accept & Earn</button>
+                </div>
+            </div>
+
+            <!-- STATE C: ACTIVE DELIVERY -->
+            <div id="state-active" class="hidden space-y-4">
+                <div class="bg-white p-8 rounded-[3rem] text-slate-950 shadow-2xl relative overflow-hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-2xl"><i class="fa-solid fa-motorcycle"></i></div>
+                        <div>
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Customer</p>
+                            <h4 class="text-xl font-black leading-none">Abhinav Baskaran</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2 mb-6">
+                        <span class="bg-orange-100 text-orange-600 text-[9px] font-black px-3 py-1 rounded-lg border border-orange-200">
+                            <i class="fa-solid fa-star"></i> PREMIUM CUSTOMER
+                        </span>
+                        <span class="bg-red-100 text-red-600 text-[9px] font-black px-3 py-1 rounded-lg border border-red-200 uppercase">
+                            Fragile: Eggs inside
+                        </span>
+                    </div>
+
+                    <p class="text-sm font-bold flex items-center gap-2 mb-8 text-slate-600">
+                        <i class="fa-solid fa-location-dot text-red-500"></i> HSR Layout, Sector 7, Apt 402
+                    </p>
+
+                    <div class="flex gap-2">
+                        <button id="nav-trigger" onclick="startNavigation()" class="flex-1 bg-blue-600 text-white py-5 rounded-[2.5rem] font-black text-xs uppercase shadow-xl flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-map-location-dot text-lg"></i> Navigate
+                        </button>
+                        <button class="bg-slate-100 p-5 rounded-full text-slate-400 active:text-green-600">
+                            <i class="fa-solid fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proof of Freshness AI -->
+                <div id="pof-section" class="hidden glass p-8 rounded-[3rem] border-2 border-dashed border-blue-500/30">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-blue-500/20 text-blue-400 rounded-lg flex items-center justify-center"><i class="fa-solid fa-camera"></i></div>
+                        <h4 class="font-black text-sm uppercase italic">AI Freshness Audit</h4>
+                    </div>
+                    <div class="bg-slate-900 rounded-3xl p-10 text-center border border-white/5 group hover:border-blue-500 transition-all cursor-pointer">
+                        <i class="fa-solid fa-circle-notch text-3xl text-blue-500 animate-spin mb-4 block"></i>
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">Scanning items for damage... <br>Quality check in progress</p>
+                    </div>
+                    <button onclick="completeOrder()" class="w-full bg-green-500 text-black py-5 rounded-[2.5rem] font-black text-sm uppercase mt-6 shadow-xl neon-green transition-transform active:scale-95">
+                        Delivered Successfully
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ANALYTICS & BADGES VIEW -->
+        <div id="analytics-view" class="view-section space-y-6 no-scrollbar">
+            <!-- Badge Collection -->
+            <div class="glass p-8 rounded-[3rem]">
+                <h3 class="font-black text-lg mb-6 flex justify-between items-center">
+                    RIDER BADGES <span class="text-[10px] text-green-500">3 UNLOCKED</span>
+                </h3>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 bg-yellow-500/20 rounded-full flex items-center justify-center border border-yellow-500/50 badge-glow">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1162/1162456.png" class="w-8 h-8">
+                        </div>
+                        <span class="text-[8px] font-black text-center text-yellow-500">SPEED<br>DEMON</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/50">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png" class="w-8 h-8">
+                        </div>
+                        <span class="text-[8px] font-black text-center text-blue-500">CARE<br>TAKER</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 opacity-30">
+                        <div class="w-14 h-14 bg-slate-700 rounded-full flex items-center justify-center border border-slate-600 grayscale">
+                            <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+                        </div>
+                        <span class="text-[8px] font-black text-center text-slate-500">NIGHT<br>OWL</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 opacity-30">
+                        <div class="w-14 h-14 bg-slate-700 rounded-full flex items-center justify-center border border-slate-600 grayscale">
+                            <i class="fa-solid fa-shield text-xl"></i>
+                        </div>
+                        <span class="text-[8px] font-black text-center text-slate-500">SAFETY<br>PRO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Graph -->
+            <div class="glass p-6 rounded-[3rem]">
+                <p class="text-[10px] font-black text-slate-500 uppercase mb-4 tracking-widest">Earnings History</p>
+                <div class="flex items-end h-32 gap-3 mb-4">
+                    <div class="bg-slate-800 w-full h-[30%] rounded-lg"></div>
+                    <div class="bg-slate-800 w-full h-[45%] rounded-lg"></div>
+                    <div class="bg-slate-800 w-full h-[65%] rounded-lg"></div>
+                    <div class="bg-green-500 w-full h-[90%] rounded-lg neon-green"></div>
+                    <div class="bg-slate-800 w-full h-[55%] rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. WALLET VIEW -->
+        <div id="wallet-view" class="view-section flex flex-col justify-center px-4">
+            <div class="text-center glass p-10 rounded-[4rem] border border-white/5 shadow-2xl relative overflow-hidden">
+                <i class="fa-solid fa-wallet absolute -top-5 -right-5 text-[10rem] opacity-5 -rotate-12"></i>
+                <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Available Funds</p>
+                <h2 class="text-6xl font-black italic mb-10 tracking-tighter">₹1,420<span class="text-lg font-normal text-slate-500">.00</span></h2>
+                <button class="w-full bg-green-500 text-black py-5 rounded-[2.5rem] font-black text-lg shadow-xl active:scale-95 transition-transform uppercase">
+                    Transfer to Bank
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 w-full glass rounded-t-[3.5rem] px-10 py-8 border-t border-white/10 flex justify-between items-center z-[100] shadow-[0_-15px_40px_rgba(0,0,0,0.6)]">
+        <div onclick="switchView('home', this)" class="nav-btn active text-green-500 transition-all cursor-pointer"><i class="fa-solid fa-house-user text-2xl"></i></div>
+        <div onclick="switchView('analytics', this)" class="nav-btn text-slate-600 transition-all cursor-pointer"><i class="fa-solid fa-medal text-2xl"></i></div>
+        
+        <!-- Center Action (SOS) -->
+        <div onclick="triggerSOS()" class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center shadow-lg shadow-red-500/40 -mt-20 border-4 border-slate-950 active:scale-90 transition-transform">
+            <i class="fa-solid fa-triangle-exclamation text-white text-2xl"></i>
+        </div>
+
+        <div onclick="switchView('wallet', this)" class="nav-btn text-slate-600 transition-all cursor-pointer"><i class="fa-solid fa-wallet text-2xl"></i></div>
+        <div onclick="alert('Battery: 92% • Vehicle Temp: Optimal')" class="nav-btn text-slate-600 transition-all cursor-pointer"><i class="fa-solid fa-bolt-lightning text-2xl"></i></div>
+    </nav>
+
+    <script src="Deliverier.js"></script>
+</body>
+</html>

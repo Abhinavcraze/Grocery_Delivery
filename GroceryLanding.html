@@ -131,27 +131,7 @@
         </div>
     </section>
 
-    <!-- Login Modal Integration -->
-    <!-- <div id="login-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-3xl font-black">Login</h3>
-                <button onclick="toggleModal('login-modal')" class="text-2xl text-gray-300 hover:text-black">&times;</button>
-            </div>
-            <p class="text-gray-500 mb-6 text-sm">Please sign in to access your saved orders and Mart Pass benefits.</p>
-            <form onsubmit="return false;" class="space-y-4">
-                <input type="email" placeholder="Email Address" class="w-full bg-gray-50 border-none rounded-xl py-4 px-4 focus:ring-2 focus:ring-green-500 transition-all">
-                <input type="password" placeholder="Password" class="w-full bg-gray-50 border-none rounded-xl py-4 px-4 focus:ring-2 focus:ring-green-500 transition-all">
-                <button onclick="validateLandingLogin()" class="w-full bg-green-600 text-white py-4 rounded-2xl font-black text-lg shadow-xl shadow-green-100 hover:bg-green-700 mt-4 transition-all">
-                    Sign In
-                </button>
-                <div class="flex justify-between text-xs font-bold text-gray-400 px-2">
-                    <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox"> Remember me</label>
-                    <a href="#" class="text-green-600">Forgot Password?</a>
-                </div>
-            </form>
-        </div>
-    </div> -->
+    
 
     <div id="login-modal"
         class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
@@ -171,6 +151,10 @@
                     <h3 class="text-3xl font-black">Login</h3>
                     <button onclick="toggleModal('login-modal')" class="text-2xl text-gray-300 hover:text-black">&times;</button>
                 </div>
+                <p class="text-gray-500 mb-6 text-sm">
+                    <b>Client:</b> abhinavbaskaran8303@gmail.com / Abhinav@8323 <br>
+                    <b>Rider:</b> rider@pazhamuthir.com / Rider@123
+                </p>
                 <p class="text-gray-500 mb-6 text-sm">Please sign in to access your saved orders and Mart Pass benefits.</p>
                 <form onsubmit="return false;" class="space-y-4">
                     <input type="email" placeholder="Email Address"
@@ -202,21 +186,32 @@
         }
 
         function validateLandingLogin() {
-            // Get the input elements (Assuming they are the first email and password fields in the modal)
+            // 1. Get the input values from the modal
             const emailInput = document.querySelector('#login-modal input[type="email"]').value;
             const passwordInput = document.querySelector('#login-modal input[type="password"]').value;
 
-            // Define the required credentials
-            const validEmail = "abhinavbaskaran8303@gmail.com";
-            const validPassword = "Abhinav@8323";
+            // 2. Define Client Credentials
+            const clientEmail = "abhinavbaskaran8303@gmail.com";
+            const clientPassword = "Abhinav@8323";
 
-            // Validation Logic
-            if (emailInput === validEmail && passwordInput === validPassword) {
-                // Success: Redirect to Groceries.html
+            // 3. Define Delivery Man Credentials
+            const riderEmail = "rider@pazhamuthir.com";
+            const riderPassword = "Rider@123";
+
+            // 4. Validation & Redirection Logic
+            if (emailInput === clientEmail && passwordInput === clientPassword) {
+                // SUCCESS: Redirect Client to the Store
+                alert("Login Successful! Welcome to the Store.");
                 window.location.href = 'Groceries.html';
+                
+            } else if (emailInput === riderEmail && passwordInput === riderPassword) {
+                // SUCCESS: Redirect Delivery Man to the Rider Dashboard
+                alert("Rider Authenticated! Opening Command Center.");
+                window.location.href = 'Deliverier.html';
+                
             } else {
-                // Failure: Show error message
-                alert("Invalid Credentials. Please check your email and password.");
+                // FAILURE: Show error
+                alert("Access Denied: Invalid Email or Password. \n\nPlease check your credentials.");
             }
         }
     </script>
