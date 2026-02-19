@@ -254,19 +254,36 @@ const products = [
         }
 
         // Updated Checkout to include Slots and Total Move
+        // function processCheckout() {
+        //     const totalAmount = document.getElementById('footer-total').innerText;
+        //     const selectedSlot = document.querySelector('input[name="delivery-slot"]:checked').value;
+
+        //     if (cart.length === 0) return alert("Add items to cart first!");
+
+        //     // Save history before moving to tracking
+        //     saveToPurchaseHistory();
+
+        //     localStorage.setItem('orderTotal', totalAmount);
+        //     localStorage.setItem('deliverySlot', selectedSlot);
+
+        //     alert(`Order Confirmed for ${selectedSlot}!\nYour frequent list has been updated.`);
+        //     window.location.href = 'Tracking.html';
+        // }
         function processCheckout() {
-            const totalAmount = document.getElementById('footer-total').innerText;
-            const selectedSlot = document.querySelector('input[name="delivery-slot"]:checked').value;
+            const totalElement = document.getElementById('footer-total');
+            
+            if (!totalElement || totalElement.innerText === "₹0") {
+                alert("Your cart is empty!");
+                return;
+            }
 
-            if (cart.length === 0) return alert("Add items to cart first!");
+            const finalAmount = totalElement.innerText;
 
-            // Save history before moving to tracking
-            saveToPurchaseHistory();
+            localStorage.removeItem('orderTotal'); 
+            localStorage.setItem('orderTotal', finalAmount);
 
-            localStorage.setItem('orderTotal', totalAmount);
-            localStorage.setItem('deliverySlot', selectedSlot);
+            console.log("Saving amount to memory: ", finalAmount);
 
-            alert(`Order Confirmed for ${selectedSlot}!\nYour frequent list has been updated.`);
             window.location.href = 'Tracking.html';
         }
 
