@@ -310,6 +310,31 @@ const products = [
             });
         }
 
+        function updateLocationUI(newAddress) {
+
+          const addressSpan = document.getElementById('header-address');
+          if (addressSpan) {
+              addressSpan.innerText = newAddress;
+              
+              // Visual feedback
+              addressSpan.classList.add('text-green-600');
+              setTimeout(() => addressSpan.classList.remove('text-green-600'), 2000);
+          }
+
+          // 2. Save to storage
+          localStorage.setItem('userLocation', newAddress);
+
+          // 3. Close Modal
+          toggleModal('map-modal');
+      }
+
+      // Logic to load saved location on refresh
+      document.addEventListener('DOMContentLoaded', () => {
+          const savedLoc = localStorage.getItem('userLocation');
+          if (savedLoc) {
+              document.getElementById('header-address').innerText = savedLoc;
+          }
+      });
         // --- TOGGLE REORDER HISTORY ---
         function toggleReorderHistory() {
             const list = document.getElementById('smart-reorder-list');
