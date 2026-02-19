@@ -620,5 +620,27 @@ const products = [
             }, 1000);
         }
 
+        let isLoggedIn = false;
+        const VALID_EMAIL = "abhinavbaskaran8303@gmail.com";
+        const VALID_PASS = "Abhinav@8323";
+
+        function validateLandingLogin() {
+            // Get the input elements (Assuming they are the first email and password fields in the modal)
+            const emailInput = document.querySelector('#login-modal input[type="email"]').value;
+            const passwordInput = document.querySelector('#login-modal input[type="password"]').value;
+
+            // Define the required credentials
+            const validEmail = "abhinavbaskaran8303@gmail.com";
+            const validPassword = "Abhinav@8323";
+
+            // Validation Logic
+            if (emailInput === validEmail && passwordInput === validPassword) {
+                // Success: Redirect to Groceries.html
+                window.location.href = 'Groceries.html';
+            } else {
+                // Failure: Show error message
+                alert("Invalid Credentials. Please check your email and password.");
+            }
+        }
         // Initialize
         render();

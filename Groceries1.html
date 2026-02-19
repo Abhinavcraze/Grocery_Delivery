@@ -85,35 +85,8 @@
             </div>
 
             <!-- User Actions -->
-            <div class="flex items-center gap-3">
-                <!-- 1. Compact Profile Button -->
-                <button id="profile-btn" onclick="toggleProfile()"
-                    class="flex-shrink-0 active:scale-90 transition-transform">
-                    <div
-                        class="w-10 h-10 bg-[#5C1B95] text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-purple-100 shadow-sm">
-                        AB
-                    </div>
-                </button>
-
-                <!-- 2. Small Integrated Wallet Pill -->
-                <div
-                    class="flex items-center bg-gradient-to-r from-green-600 to-green-700 px-3 py-1.5 rounded-xl text-white shadow-sm border border-green-500/30">
-                    <div class="flex flex-col mr-3 border-r border-white/20 pr-3 leading-tight">
-                        <span class="text-[8px] font-black uppercase opacity-80 tracking-tighter">Wallet</span>
-                        <span id="wallet-balance-display" class="text-sm font-black italic">₹0.00</span>
-                    </div>
-                    <button onclick="addMoneyToWallet()"
-                        class="w-6 h-6 bg-white text-green-700 rounded-lg flex items-center justify-center hover:bg-green-50 transition-colors shadow-sm active:scale-95">
-                        <i class="fa-solid fa-plus text-[10px]"></i>
-                    </button>
-                </div>
-
-                <!-- 3. Small Compact Cart Button -->
-                <button onclick="toggleModal('cart-modal')"
-                    class="bg-green-600 text-white px-4 py-2.5 rounded-xl font-black text-sm shadow-md flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95">
-                    <i class="fa-solid fa-cart-shopping text-xs"></i>
-                    <span id="cart-count" class="bg-white/20 px-1.5 rounded-md min-w-[18px]">0</span>
-                </button>
+            <div class="flex gap-4">
+                <button onclick="toggleModal('login-modal')" class="px-6 py-2.5 font-bold text-gray-700">Login</button>
             </div>
 
         </div>
@@ -394,6 +367,59 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-4xl rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl border border-white/20">
+            
+            <!-- Left Side: Visual Branding (Visible on desktop) -->
+            <div class="md:w-1/2 relative min-h-[400px] hidden md:block">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800"
+                    class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-green-900/40 flex flex-col justify-end p-10 text-white">
+                    <h2 class="text-4xl font-black mb-2 leading-tight">Freshness <br>at your door.</h2>
+                    <p class="opacity-80 font-medium">Join 2 Million+ happy customers.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Clean Validation Form -->
+            <div class="md:w-1/2 p-10 flex flex-col justify-center bg-white">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-3xl font-black text-gray-800">Login</h3>
+                    <button onclick="toggleModal('login-modal')" class="text-2xl text-gray-300 hover:text-black">&times;</button>
+                </div>
+                
+                <p class="text-gray-500 mb-6 text-sm font-medium">Enter your credentials to access your basket and Mart Pass.</p>
+                
+                <form onsubmit="return false;" class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] font-black uppercase text-gray-400 mb-1 ml-1 tracking-widest">Email Address</label>
+                        <input type="email" id="emailInput" placeholder="abhinav@example.com"
+                            class="w-full bg-gray-50 border-2 border-transparent rounded-xl py-4 px-4 focus:ring-0 focus:border-green-500 transition-all font-bold">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-[10px] font-black uppercase text-gray-400 mb-1 ml-1 tracking-widest">Password</label>
+                        <input type="password" id="passwordInput" placeholder="••••••••"
+                            class="w-full bg-gray-50 border-2 border-transparent rounded-xl py-4 px-4 focus:ring-0 focus:border-green-500 transition-all font-bold">
+                    </div>
+
+                    <button onclick="validateLandingLogin()"
+                        class="w-full bg-green-600 text-white py-4 rounded-2xl font-black text-lg shadow-xl shadow-green-100 hover:bg-green-700 mt-6 transition-all active:scale-95">
+                        Sign In
+                    </button>
+
+                    <div class="flex justify-between text-xs font-bold text-gray-400 px-1 mt-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="w-4 h-4 accent-green-600 rounded">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="text-green-600 hover:underline">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8 pb-32">
         <div id="product-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
@@ -622,7 +648,8 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3 text-sm text-gray-500">
                         <!-- Column 1 -->
                         <ul class="space-y-3">
-                            <li><a href="javascript:filterItems('Dairy')" class="hover:text-green-600">Fruits & Veggies</a></li>
+                            <li><a href="javascript:filterItems('Fresh Produce')" class="hover:text-green-600">Fruits &
+                                    Veggies</a></li>
                             <li><a href="javascript:filterItems('Dairy')" class="hover:text-green-600">Dairy & Eggs</a>
                             </li>
                             <li><a href="javascript:filterItems('Bakery')" class="hover:text-green-600">Bakery &
