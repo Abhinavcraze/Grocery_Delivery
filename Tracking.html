@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Tracking.css">
 </head>
+
 <body class="pb-20">
 
     <!-- Header -->
     <header class="p-6 bg-white border-b flex justify-between items-center sticky top-0 z-50">
         <div>
-            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Order ID: #PF-88323</p>
+            <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">Order ID: #PF-88323
+            </p>
             <h1 class="text-xl font-black text-green-800">Tracking Delivery</h1>
         </div>
         <button onclick="window.history.back()" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition-all">
@@ -23,7 +26,7 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 mt-6">
-        
+
         <!-- Live Map Simulation -->
         <div class="map-sim rounded-[2.5rem] shadow-2xl overflow-hidden border-4 border-white mb-8">
             <div class="absolute inset-0 bg-green-900/10 pointer-events-none"></div>
@@ -36,7 +39,8 @@
             <div class="rider-dot">
                 <div class="bg-green-600 text-white p-3 rounded-full shadow-2xl relative">
                     <i class="fa-solid fa-motorcycle text-xl"></i>
-                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                    <div
+                        class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center">
                         <div class="w-2 h-2 bg-green-600 rounded-full animate-ping"></div>
                     </div>
                 </div>
@@ -44,17 +48,19 @@
         </div>
 
         <div class="grid md:grid-cols-5 gap-6">
-            
+
             <!-- Left Side: Order Progress (3 Cols) -->
             <div class="md:col-span-3 space-y-6">
-                
+
                 <!-- Countdown Card -->
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center justify-between overflow-hidden relative">
+                <div
+                    class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 flex items-center justify-between overflow-hidden relative">
                     <div class="z-10">
                         <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Estimated Arrival</p>
                         <h2 class="text-5xl font-black text-gray-900 tracking-tighter" id="timer">09:42</h2>
                         <p class="text-green-600 font-bold text-sm mt-2 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-green-500 rounded-full status-pulse"></span> Your Rider is 1.2km away
+                            <span class="w-2 h-2 bg-green-500 rounded-full status-pulse"></span> Your Rider is 1.2km
+                            away
                         </p>
                     </div>
                     <i class="fa-solid fa-clock text-[8rem] text-gray-50 absolute right-[-20px] top-[-20px]"></i>
@@ -66,7 +72,9 @@
                     <div class="space-y-8">
                         <div class="flex gap-4">
                             <div class="flex flex-col items-center">
-                                <div class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm"><i class="fa-solid fa-check"></i></div>
+                                <div
+                                    class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-check"></i></div>
                                 <div class="w-0.5 h-10 bg-green-100"></div>
                             </div>
                             <div>
@@ -76,7 +84,9 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="flex flex-col items-center">
-                                <div class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm"><i class="fa-solid fa-check"></i></div>
+                                <div
+                                    class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-sm">
+                                    <i class="fa-solid fa-check"></i></div>
                                 <div class="w-0.5 h-10 bg-green-100"></div>
                             </div>
                             <div>
@@ -86,7 +96,9 @@
                         </div>
                         <div class="flex gap-4">
                             <div class="flex flex-col items-center">
-                                <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm animate-bounce"><i class="fa-solid fa-motorcycle"></i></div>
+                                <div
+                                    class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm animate-bounce">
+                                    <i class="fa-solid fa-motorcycle"></i></div>
                             </div>
                             <div>
                                 <p class="font-black text-sm text-green-700 underline">Out for Delivery</p>
@@ -99,15 +111,21 @@
 
             <!-- Right Side: Rider & Security (2 Cols) -->
             <div class="md:col-span-2 space-y-6">
-                
+
                 <!-- Rider Card -->
                 <div class="bg-white p-6 rounded-[2.5rem] shadow-sm border border-gray-100 text-center">
-                    <img src="https://i.pravatar.cc/150?u=rider" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 p-1">
+                    <img src="https://i.pravatar.cc/150?u=rider"
+                        class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 p-1">
                     <h4 class="font-black text-xl">Arul Kumar</h4>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Delivery Partner • 4.9 <i class="fa-solid fa-star text-yellow-400"></i></p>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Delivery Partner • 4.9 <i
+                            class="fa-solid fa-star text-yellow-400"></i></p>
                     <div class="flex gap-3">
-                        <button class="flex-1 bg-green-100 text-green-700 py-3 rounded-2xl font-black text-sm hover:bg-green-200 transition-all"><i class="fa-solid fa-phone mr-2"></i> CALL</button>
-                        <button class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-2xl font-black text-sm hover:bg-gray-200 transition-all"><i class="fa-solid fa-message mr-2"></i> CHAT</button>
+                        <button
+                            class="flex-1 bg-green-100 text-green-700 py-3 rounded-2xl font-black text-sm hover:bg-green-200 transition-all"><i
+                                class="fa-solid fa-phone mr-2"></i> CALL</button>
+                        <button
+                            class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-2xl font-black text-sm hover:bg-gray-200 transition-all"><i
+                                class="fa-solid fa-message mr-2"></i> CHAT</button>
                     </div>
                 </div>
 
@@ -118,23 +136,44 @@
                         <h4 class="font-black text-lg">SafePay Escrow</h4>
                     </div>
                     <p class="text-sm text-green-50 leading-relaxed opacity-90">
-                        Don't worry! Your payment is safe with us. We only release funds to the store after Arul delivers your fresh groceries.
+                        Don't worry! Your payment is safe with us. We only release funds to the store after Arul
+                        delivers your fresh groceries.
                     </p>
                 </div>
 
                 <!-- Order Summary Link -->
+                <!-- Find this part and replace it -->
                 <div class="bg-white p-6 rounded-[2.5rem] border border-gray-100">
                     <div class="flex justify-between items-center">
                         <div>
-                            <p class="text-xs font-black text-gray-400 uppercase">Order Value</p>
+                            <p class="text-xs font-black text-gray-400 uppercase tracking-widest">Order Value</p>
                             <p id="tracking-order-total" class="font-black text-lg">₹0.00</p>
                         </div>
-                        <button class="text-green-600 font-black text-sm hover:underline">View Items</button>
+                        <!-- ADD THIS BUTTON BELOW -->
+                        <button onclick="showOrderedItems()" class="text-green-600 font-black text-sm hover:underline">View Items</button>
+                    </div>
+                </div>
+
+                <!-- Items List Modal (Pop-up) -->
+                <div id="items-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
+                    <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl animate-in fade-in zoom-in duration-300">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-black text-gray-800 uppercase tracking-tighter">Your Order Details</h3>
+                            <button onclick="toggleItemsModal()" class="text-gray-300 hover:text-black text-2xl">&times;</button>
+                        </div>
+                        
+                        <!-- Container where items will be listed -->
+                        <div id="ordered-items-container" class="space-y-4 max-h-80 overflow-y-auto no-scrollbar pr-2">
+                            <!-- Items will be injected here by Tracking.js -->
+                        </div>
+
+                        <button onclick="toggleItemsModal()" class="w-full mt-8 bg-gray-100 text-gray-500 py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-gray-200 transition-all">Close Details</button>
                     </div>
                 </div>
 
                 <!-- THE MAGIC BUTTON: Confirm Arrival -->
-                <button onclick="confirmOrderAtHome()" class="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-lg shadow-2xl hover:bg-black transition-all">
+                <button onclick="confirmOrderAtHome()"
+                    class="w-full bg-gray-900 text-white py-5 rounded-[2rem] font-black text-lg shadow-2xl hover:bg-black transition-all">
                     I HAVE RECEIVED MY ORDER
                 </button>
             </div>
@@ -143,4 +182,5 @@
 
     <script src="Tracking.js"></script>
 </body>
+
 </html>

@@ -253,36 +253,15 @@ const products = [
             }
         }
 
-        // Updated Checkout to include Slots and Total Move
-        // function processCheckout() {
-        //     const totalAmount = document.getElementById('footer-total').innerText;
-        //     const selectedSlot = document.querySelector('input[name="delivery-slot"]:checked').value;
-
-        //     if (cart.length === 0) return alert("Add items to cart first!");
-
-        //     // Save history before moving to tracking
-        //     saveToPurchaseHistory();
-
-        //     localStorage.setItem('orderTotal', totalAmount);
-        //     localStorage.setItem('deliverySlot', selectedSlot);
-
-        //     alert(`Order Confirmed for ${selectedSlot}!\nYour frequent list has been updated.`);
-        //     window.location.href = 'Tracking.html';
-        // }
+        // Locate this function in your Groceries.js
         function processCheckout() {
-            const totalElement = document.getElementById('footer-total');
+            const totalAmount = document.getElementById('footer-total').innerText;
             
-            if (!totalElement || totalElement.innerText === "₹0") {
-                alert("Your cart is empty!");
-                return;
-            }
+            if (cart.length === 0) return alert("Add items to cart first!");
 
-            const finalAmount = totalElement.innerText;
-
-            localStorage.removeItem('orderTotal'); 
-            localStorage.setItem('orderTotal', finalAmount);
-
-            console.log("Saving amount to memory: ", finalAmount);
+            // Save the list of items (The most important step!)
+            localStorage.setItem('purchasedItems', JSON.stringify(cart));
+            localStorage.setItem('orderTotal', totalAmount);
 
             window.location.href = 'Tracking.html';
         }
